@@ -1,40 +1,18 @@
-package GameModel;
-
-
-/**
- * Class Singleton_T_
- */
-public class Singleton_T_ {
-
-    //
-    // Fields
-    //
-
+package com.fiu.manhunt.GameModel;
   
-    //
-    // Constructors
-    //
-    public Singleton_T_ () { };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
-    //
-    // Other methods
-    //
-
-    /**
-     * @return       T
-     */
-  public static T getInstance()
-  {
-    }
-
-
+public class Singleton {
+ 
+	   private static Singleton instance = null;
+	   
+	   protected Singleton() {}
+	   
+	   public static Singleton getInstance() {
+		   
+	      if(instance == null) {
+	         instance = new Singleton();
+	      }
+	      
+	      return instance;
+	   }
+ 
 }

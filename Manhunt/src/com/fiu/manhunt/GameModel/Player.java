@@ -1,40 +1,46 @@
-package GameModel;
+package com.fiu.manhunt.GameModel;
 
+import android.location.Location;
+
+import java.util.*; 
 
 /**
  * Class PlayerInformation
  */
-public class PlayerInformation {
-
-    //
-    // Fields
-    //
-
-  private int powerUpUseTimestamp;
-  private GameModel.PlayerType playerType = 0;
-  private GameModel.PowerUp powerUpInventory;
+public class Player {
+ 
+	private enum Type{
+		Predator,
+		Prey
+	}
+	
+  private Date powerUpUseTimestamp;
+  private String name;
+  private String playerType;
+  private List<PowerUp> powerUpInventory;
   private Location location;
   private int id;
   
     //
     // Constructors
     //
-    public PlayerInformation () { };
+    public Player (int id, Player.Type type) { 
+    	this.powerUpUseTimestamp = null;
+    	this.powerUpInventory = new LinkedList();
+    	this.location = null;
+    	this.playerType = type.toString();  
+    	this.id = id;
+    };
   
     //
     // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
+    // 
 
     /**
      * Set the value of powerUpUseTimestamp
      * @param newVar the new value of powerUpUseTimestamp
      */
-  private void setPowerUpUseTimestamp (int newVar) {
+  public void setPowerUpUseTimestamp (Date newVar) {
       powerUpUseTimestamp = newVar;
   }
 
@@ -42,7 +48,7 @@ public class PlayerInformation {
      * Get the value of powerUpUseTimestamp
      * @return the value of powerUpUseTimestamp
      */
-  private int getPowerUpUseTimestamp () {
+  public Date getPowerUpUseTimestamp () {
       return powerUpUseTimestamp;
   }
 
@@ -50,15 +56,15 @@ public class PlayerInformation {
      * Set the value of playerType
      * @param newVar the new value of playerType
      */
-  private void setPlayerType (GameModel.PlayerType newVar) {
-      playerType = newVar;
+  public void setPlayerType(Type newVar) {
+      playerType = newVar.toString();
   }
 
     /**
      * Get the value of playerType
      * @return the value of playerType
      */
-  private GameModel.PlayerType getPlayerType () {
+  public String getPlayerType () {
       return playerType;
   }
 
@@ -66,23 +72,37 @@ public class PlayerInformation {
      * Set the value of powerUpInventory
      * @param newVar the new value of powerUpInventory
      */
-  private void setPowerUpInventory (GameModel.PowerUp newVar) {
-      powerUpInventory = newVar;
+  public void setPowerUpInventory (List inventory) {
+      powerUpInventory = inventory;
   }
 
     /**
      * Get the value of powerUpInventory
      * @return the value of powerUpInventory
      */
-  private GameModel.PowerUp getPowerUpInventory () {
+  public List getPowerUpInventory () {
       return powerUpInventory;
+  }
+  
+  /**
+   * Adds a PowerUp to the powerUpInventory 
+   */
+  public void addPowerUp(PowerUp powerUp){
+	  this.powerUpInventory.add(powerUp);
+  }
+  
+  /**
+   * Removes a PowerUp from the powerUpInventory 
+   */
+  public void removePowerUp(PowerUp powerUp){
+	  this.powerUpInventory.remove(powerUp);
   }
 
     /**
      * Set the value of location
      * @param newVar the new value of location
      */
-  private void setLocation (Location newVar) {
+  private void setLocation(Location newVar) {
       location = newVar;
   }
 
@@ -90,7 +110,7 @@ public class PlayerInformation {
      * Get the value of location
      * @return the value of location
      */
-  private Location getLocation () {
+  public Location getLocation () {
       return location;
   }
 
@@ -98,7 +118,7 @@ public class PlayerInformation {
      * Set the value of id
      * @param newVar the new value of id
      */
-  private void setId (int newVar) {
+  public void setId (int newVar) {
       id = newVar;
   }
 
@@ -106,92 +126,29 @@ public class PlayerInformation {
      * Get the value of id
      * @return the value of id
      */
-  private int getId () {
+  public int getId () {
       return id;
   }
-
-    //
-    // Other methods
-    //
-
-    /**
-     * @return       Location
-     */
-  public Location getLocation()
-  {
-    }
-
-
-    /**
-     * @return       String
-     */
-  public String getPlayerName()
-  {
-    }
-
-
-    /**
-     * @return       int
-     */
-  public int getId()
-  {
-    }
-
-
-    /**
-     * @return       GameModel.PowerUpCommand
-     * @param        powerupType
-     */
-  public GameModel.PowerUpCommand getPowerUp(String powerupType)
-  {
-    }
-
-
-    /**
-     * @param        powerUp
-     */
-  public void addPowerUp(GameModel.PowerUp powerUp)
-  {
-    }
-
-
+  
     /**
      * @param        playerName
      */
   public void setPlayerName(String playerName)
   {
-    }
-
-
-    /**
-     * @param        setId
-     */
-  public void setId(int setId)
-  {
-    }
-
-
+	  this.name = playerName;
+  }
+  
     /**
      * @param        location
      */
   public void setLocations(Location location)
   {
-    }
-
-
-    /**
-     * @param        playerType
-     */
-  public void setPlayerType(GameModel.PlayerType playerType)
-  {
-    }
-
-
+  }
+ 
     /**
      */
   public void cleanPowerUps()
   {
-    }
-
-
+	  this.powerUpInventory.clear();
+  } 
 }

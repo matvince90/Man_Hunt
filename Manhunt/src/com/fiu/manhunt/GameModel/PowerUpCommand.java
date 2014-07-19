@@ -1,64 +1,24 @@
-package GameModel;
-
-
-/**
- * Class PowerUpCommand
- */
-class PowerUpCommand extends Command {
-
-    //
-    // Fields
-    //
-
-  private GameModel.PowerUp powerUp = null;
+package com.fiu.manhunt.GameModel;
+ 
+  class PowerUpCommand implements Command {
+ 
+  private  PowerUp powerUp = null;
+   
+  public PowerUpCommand () { 
+	  
+  };
   
-    //
-    // Constructors
-    //
-    public PowerUpCommand () { };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
-    /**
-     * Set the value of powerUp
-     * @param newVar the new value of powerUp
-     */
-  private void setPowerUp (GameModel.PowerUp newVar) {
+  private void setPowerUp(PowerUp newVar) {
       powerUp = newVar;
   }
-
-    /**
-     * Get the value of powerUp
-     * @return the value of powerUp
-     */
-  private GameModel.PowerUp getPowerUp () {
+ 
+  private PowerUp getPowerUp() {
       return powerUp;
   }
-
-    //
-    // Other methods
-    //
-
-    /**
-     */
+ 
   public void execute()
   {
-    }
-
-
-    /**
-     * @param        powerUp
-     */
-  public void setPowerUp(GameModel.PowerUp powerUp)
-  {
-    }
-
-
+    
+  }
+ 
 }

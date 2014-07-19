@@ -1,39 +1,7 @@
-package GameModel;
-
-
-/**
- * Class Command
- */
-abstract public class Command {
-
-    //
-    // Fields
-    //
-
+package com.fiu.manhunt.GameModel;
+ 
+public interface Command {
+ 
+  public void execute();  
   
-    //
-    // Constructors
-    //
-    public Command () { };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
-    //
-    // Other methods
-    //
-
-    /**
-     */
-  public void execute()
-  {
-    }
-
-
 }

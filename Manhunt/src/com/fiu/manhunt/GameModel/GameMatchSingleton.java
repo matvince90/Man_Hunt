@@ -12,7 +12,7 @@ class GameMatchSingleton {
 
   static private GameModel.GameMatchSingleton instance;
   private GameModel.GameMap gameMap;
-  private List<GameModel.PlayerInformation> matchPlayers;
+  private List<Player.PlayerInformation> matchPlayers;
   private int currentPlayer;
   private int startTime;
   
@@ -58,7 +58,7 @@ class GameMatchSingleton {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-  private void setMatchPlayers (List<GameModel.PlayerInformation> newVar) {
+  private void setMatchPlayers (List<Player.PlayerInformation> newVar) {
       matchPlayers = newVar;
   }
 
@@ -66,7 +66,7 @@ class GameMatchSingleton {
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  private List<GameModel.PlayerInformation> getMatchPlayers () {
+  private List<Player.PlayerInformation> getMatchPlayers () {
       return matchPlayers;
   }
 
@@ -165,7 +165,7 @@ class GameMatchSingleton {
     /**
      * @return       GameModel.PlayerInformation
      */
-  public GameModel.PlayerInformation getCurrentPlayer()
+  public Player.PlayerInformation getCurrentPlayer()
   {
     }
 
