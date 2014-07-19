@@ -94,7 +94,7 @@ public class PowerUp {
      * @param newVar the new value of icon
      */
   public void setIcon (String newVar) {
-      icon = newVar;
+      iconPath = newVar;
   }
 
     /**
