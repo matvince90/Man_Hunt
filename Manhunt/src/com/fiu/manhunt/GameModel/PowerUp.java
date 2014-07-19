@@ -1,5 +1,8 @@
 package com.fiu.manhunt.GameModel;
 
+import java.util.*;
+import java.sql.Date;
+
 
 /**
  * Class PowerUp
@@ -10,6 +13,7 @@ public class PowerUp {
     // Fields
     // 
   private String name;
+  private long startTime;
   private int duration;
   private int coolDownDuration;
   private boolean isActive;
@@ -25,8 +29,12 @@ public class PowerUp {
 	
 	public PowerUp (String name){
 	  	this.name = name;
-	  	this.duration = 60;
-	  	this.coolDownDuration = 120;
+	  	 
+	  	//duration in Milliseconds
+	  	this.duration = 60*1000;
+	  	this.coolDownDuration = 120*1000;
+	  	this.startTime = System.currentTimeMillis();
+	  	
 	  	this.isActive = false;
 	  	this.iconPath = "path to default icon";
 	}
@@ -113,5 +121,13 @@ public class PowerUp {
      */
   public String getIcon () {
       return iconPath;
-  } 
+  }
+
+	private long getStartTime() {
+		return startTime;
+	}
+
+	private void setStartTime(long startTime) {
+		this.startTime = startTime;
+	} 
 }

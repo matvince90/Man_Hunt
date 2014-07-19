@@ -2,22 +2,33 @@ package com.fiu.manhunt.GameModel;
 
 import java.util.*; 
  
-class GameMatchSingleton extends Singleton {
+class GameMatchSingleton {
  
-  static private GameMatchSingleton instance;
+  static private GameMatchSingleton instance = null;
   private GameMap gameMap;
   private List<Player> matchPlayers;
   private Player currentPlayer;
   private Date startTime;
-  
+    
     //
     // Constructors
     //
-    public GameMatchSingleton () { };
+  protected GameMatchSingleton () { 
+	  
+  };
   
     //
     // Methods
     //
+  
+  public static GameMatchSingleton getInstance() {
+	   
+	     if(instance == null) {
+	        instance = new GameMatchSingleton();
+	     }
+	     
+	     return instance;
+	  }
   
     /**
      * Set the value of gameMap

@@ -4,21 +4,23 @@ package com.fiu.manhunt.GameModel;
  
   private  PowerUp powerUp = null;
    
-  public PowerUpCommand () { 
-	  
-  };
-  
-  private void setPowerUp(PowerUp newVar) {
-      powerUp = newVar;
-  }
- 
-  private PowerUp getPowerUp() {
-      return powerUp;
-  }
+  public PowerUpCommand (PowerUp powerUp) { 
+	  this.powerUp = powerUp;
+  }; 
  
   public void execute()
   {
-    
+	  long startTime = System.currentTimeMillis();
+	  int duration = this.powerUp.getDuration();
+	  
+	  while ((System.currentTimeMillis()-startTime)< duration){
+		  //execution of the powerUp
+		  
+		  
+		  
+		  
+		  
+	  }
   }
  
 }
