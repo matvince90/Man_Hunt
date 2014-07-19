@@ -12,7 +12,7 @@ public class PowerUp {
 
   private String name;
   private int duration = 60;
-  private int coolDown = 120;
+  private int coolDownDuration = 120;
   private boolean isActive = false;
   private String icon;
   
@@ -63,7 +63,7 @@ public class PowerUp {
      * @param newVar the new value of coolDown
      */
   public void setCoolDown (int newVar) {
-      coolDown = newVar;
+      coolDownDuration = newVar;
   }
 
     /**
@@ -71,7 +71,7 @@ public class PowerUp {
      * @return the value of coolDown
      */
   public int getCoolDown () {
-      return coolDown;
+      return coolDownDuration;
   }
 
     /**
