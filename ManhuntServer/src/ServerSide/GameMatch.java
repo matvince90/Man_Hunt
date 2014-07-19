@@ -1,16 +1,18 @@
 package ServerSide;
 
+import java.util.List;
+
 
 /**
  * Class ServerGameMatch
  */
-public class ServerGameMatch {
+public class GameMatch {
 
     //
     // Fields
     //
 
-  private List<ServerSide.ServerPlayerInformation> matchPlayers;
+  private List<Player> matchPlayers;
   private int startTimestamp;
   private int id;
   private boolean active;
@@ -18,7 +20,7 @@ public class ServerGameMatch {
     //
     // Constructors
     //
-    public ServerGameMatch () { };
+    public GameMatch () { };
   
     //
     // Methods
@@ -33,7 +35,7 @@ public class ServerGameMatch {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-  private void setMatchPlayers (List<ServerSide.ServerPlayerInformation> newVar) {
+  private void setMatchPlayers (List<Player> newVar) {
       matchPlayers = newVar;
   }
 
@@ -41,7 +43,7 @@ public class ServerGameMatch {
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  private List<ServerSide.ServerPlayerInformation> getMatchPlayers () {
+  private List<Player> getMatchPlayers () {
       return matchPlayers;
   }
 
@@ -98,9 +100,9 @@ public class ServerGameMatch {
     //
 
     /**
-     * @param        playerInformation
+     * @param        player
      */
-  public void addPlayer(List<ServerSide.ServerPlayerInformation> playerInformation)
+  public void addPlayer(List<Player> player)
   {
     }
 
@@ -114,10 +116,11 @@ public class ServerGameMatch {
 
 
     /**
-     * @return       List<ServerSide.ServerPlayerInformation>
+     * @return       List<Player>
      */
-  public List<ServerSide.ServerPlayerInformation> getPlayers()
+  public List<Player> getPlayers()
   {
+	  return null;
     }
 
 
@@ -126,6 +129,7 @@ public class ServerGameMatch {
      */
   public boolean isActive()
   {
+	  return true;
     }
 
 
