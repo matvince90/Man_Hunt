@@ -8,18 +8,28 @@ public class PowerUp {
 
     //
     // Fields
-    //
-
+    // 
   private String name;
-  private int duration = 60;
-  private int coolDownDuration = 120;
-  private boolean isActive = false;
+  private int duration;
+  private int coolDownDuration;
+  private boolean isActive;
   private String iconPath;
   
     //
     // Constructors
     //
-    public PowerUp () { };
+  	
+	public PowerUp () {
+		this("Default");
+	};
+	
+	public PowerUp (String name){
+	  	this.name = name;
+	  	this.duration = 60;
+	  	this.coolDownDuration = 120;
+	  	this.isActive = false;
+	  	this.iconPath = "path to default icon";
+	}
   
     //
     // Methods
