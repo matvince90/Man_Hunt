@@ -14,7 +14,7 @@ public class PowerUp {
   private int duration = 60;
   private int coolDownDuration = 120;
   private boolean isActive = false;
-  private String icon;
+  private String iconPath;
   
     //
     // Constructors
@@ -24,8 +24,7 @@ public class PowerUp {
     //
     // Methods
     //
- 
-
+  
     /**
      * Set the value of name
      * @param newVar the new value of name
@@ -103,6 +102,6 @@ public class PowerUp {
      * @return the value of icon
      */
   public String getIcon () {
-      return icon;
+      return iconPath;
   } 
 }
