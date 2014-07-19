@@ -1,20 +1,14 @@
-package GameModel;
+package com.fiu.manhunt.GameModel;
 
-
-/**
- * Class GameMatchSingleton
- */
-class GameMatchSingleton {
-
-    //
-    // Fields
-    //
-
-  static private GameModel.GameMatchSingleton instance;
-  private GameModel.GameMap gameMap;
-  private List<Player.PlayerInformation> matchPlayers;
-  private int currentPlayer;
-  private int startTime;
+import java.util.*; 
+ 
+class GameMatchSingleton extends Singleton {
+ 
+  static private GameMatchSingleton instance;
+  private GameMap gameMap;
+  private List<Player> matchPlayers;
+  private Player currentPlayer;
+  private Date startTime;
   
     //
     // Constructors
@@ -24,25 +18,12 @@ class GameMatchSingleton {
     //
     // Methods
     //
-
-
-    //
-    // Accessor methods
-    //
-
-    /**
-     * Get the value of instance
-     * @return the value of instance
-     */
-  private GameModel.GameMatchSingleton getInstance () {
-      return instance;
-  }
-
+  
     /**
      * Set the value of gameMap
      * @param newVar the new value of gameMap
      */
-  private void setGameMap (GameModel.GameMap newVar) {
+  private void setGameMap (GameMap newVar) {
       gameMap = newVar;
   }
 
@@ -50,7 +31,7 @@ class GameMatchSingleton {
      * Get the value of gameMap
      * @return the value of gameMap
      */
-  private GameModel.GameMap getGameMap () {
+  private GameMap getGameMap () {
       return gameMap;
   }
 
@@ -58,7 +39,7 @@ class GameMatchSingleton {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-  private void setMatchPlayers (List<Player.PlayerInformation> newVar) {
+  private void setMatchPlayers (List<Player> newVar) {
       matchPlayers = newVar;
   }
 
@@ -66,7 +47,7 @@ class GameMatchSingleton {
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  private List<Player.PlayerInformation> getMatchPlayers () {
+  private List<Player> getMatchPlayers () {
       return matchPlayers;
   }
 
@@ -74,23 +55,15 @@ class GameMatchSingleton {
      * Set the value of currentPlayer
      * @param newVar the new value of currentPlayer
      */
-  private void setCurrentPlayer (int newVar) {
-      currentPlayer = newVar;
+  private void setCurrentPlayer(Player player) {
+      currentPlayer = player;
   }
-
-    /**
-     * Get the value of currentPlayer
-     * @return the value of currentPlayer
-     */
-  private int getCurrentPlayer () {
-      return currentPlayer;
-  }
-
+  
     /**
      * Set the value of startTime
      * @param newVar the new value of startTime
      */
-  private void setStartTime (int newVar) {
+  private void setStartTime(Date newVar) {
       startTime = newVar;
   }
 
@@ -98,7 +71,7 @@ class GameMatchSingleton {
      * Get the value of startTime
      * @return the value of startTime
      */
-  private int getStartTime () {
+  private Date getStartTime() {
       return startTime;
   }
 
@@ -110,78 +83,63 @@ class GameMatchSingleton {
      */
   public void updateMatchData()
   {
-    }
+    
+  }
 
-
-    /**
-     * @return       boolean
-     * @param        powerupType
-     */
-  public boolean usePowerUp(String powerupType)
-  {
-    }
-
-
+  
     /**
      */
   public void endMatch()
   {
-    }
-
-
-    /**
-     * @return       boolean
-     */
-  public boolean startMatch()
-  {
-    }
-
-
-    /**
-     * @param        action
-     * @param        data
-     * @param        function
-     */
-  public void sendMesg(String action, String data, Callable<T> function)
-  {
-    }
+   
+  }
+ 
+//    /**
+//     * @param        action
+//     * @param        data
+//     * @param        function
+//     */
+//  public void sendMesg(String action, String data, Callable<T> function)
+//  {
+//  
+//  }
 
 
     /**
      */
-  public void getPowerUpList()
+  public List<PowerUp> getPowerUpList(Player player)
   {
+	  return player.getPowerUpInventory();
     }
 
 
     /**
      * @param        playerType
      */
-  public void transformPlayerType(GameModel.PlayerType playerType)
+  public void transformPlayerType(Player.Type type)
   {
-    }
+	this.currentPlayer.setPlayerType(type);
+  }
 
 
     /**
      * @return       GameModel.PlayerInformation
      */
-  public Player.PlayerInformation getCurrentPlayer()
+  public Player getCurrentPlayer()
   {
-    }
-
-
-    /**
-     */
+	  return this.currentPlayer;
+  }
+ 
   public void updateGameMatch()
   {
-    }
-
-
-    /**
-     */
+	  //updates all of the game match variables
+	  
+  }
+ 
   public void showTagButton()
   {
-    }
+	  
+  }
 
 
 }

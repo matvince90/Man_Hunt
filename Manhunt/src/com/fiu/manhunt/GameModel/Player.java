@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class Player {
  
-	private enum Type{
+	public enum Type{
 		Predator,
 		Prey
 	}
