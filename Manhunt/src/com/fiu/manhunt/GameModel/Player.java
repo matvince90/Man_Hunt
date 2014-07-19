@@ -26,29 +26,25 @@ public class Player {
     //
     public Player (int id, Player.Type type) { 
     	this.powerUpUseTimestamp = null;
-    	this.powerUpInventory = new LinkedList();
+    	this.powerUpInventory = new LinkedList<PowerUp>();
     	this.location = null;
     	this.playerType = type.toString();  
     	this.id = id;
-    };
-  
-    //
-    // Methods
-    // 
-
+    }; 
+    
     /**
      * Set the value of powerUpUseTimestamp
      * @param newVar the new value of powerUpUseTimestamp
      */
-  public void setPowerUpUseTimestamp (Date newVar) {
-      powerUpUseTimestamp = newVar;
+  public void resetPowerUpUseTimestamp () {
+      powerUpUseTimestamp = Calendar.getInstance().getTime();
   }
 
     /**
      * Get the value of powerUpUseTimestamp
      * @return the value of powerUpUseTimestamp
      */
-  public Date getPowerUpUseTimestamp () {
+  public Date getPowerUpLastUsedTimestamp () {
       return powerUpUseTimestamp;
   }
 
@@ -72,7 +68,7 @@ public class Player {
      * Set the value of powerUpInventory
      * @param newVar the new value of powerUpInventory
      */
-  public void setPowerUpInventory (List inventory) {
+  public void setPowerUpInventory (List<PowerUp> inventory) {
       powerUpInventory = inventory;
   }
 
@@ -80,7 +76,7 @@ public class Player {
      * Get the value of powerUpInventory
      * @return the value of powerUpInventory
      */
-  public List getPowerUpInventory () {
+  public List<PowerUp> getPowerUpInventory () {
       return powerUpInventory;
   }
   
