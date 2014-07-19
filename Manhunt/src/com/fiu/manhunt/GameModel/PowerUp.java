@@ -1,4 +1,4 @@
-package GameModel;
+package com.fiu.manhunt.GameModel;
 
 
 /**
@@ -24,17 +24,13 @@ public class PowerUp {
     //
     // Methods
     //
-
-
-    //
-    // Accessor methods
-    //
+ 
 
     /**
      * Set the value of name
      * @param newVar the new value of name
      */
-  private void setName (String newVar) {
+  public void setName (String newVar) {
       name = newVar;
   }
 
@@ -42,7 +38,7 @@ public class PowerUp {
      * Get the value of name
      * @return the value of name
      */
-  private String getName () {
+  public String getName () {
       return name;
   }
 
@@ -50,7 +46,7 @@ public class PowerUp {
      * Set the value of duration
      * @param newVar the new value of duration
      */
-  private void setDuration (int newVar) {
+  public void setDuration (int newVar) {
       duration = newVar;
   }
 
@@ -58,7 +54,7 @@ public class PowerUp {
      * Get the value of duration
      * @return the value of duration
      */
-  private int getDuration () {
+  public int getDuration () {
       return duration;
   }
 
@@ -66,7 +62,7 @@ public class PowerUp {
      * Set the value of coolDown
      * @param newVar the new value of coolDown
      */
-  private void setCoolDown (int newVar) {
+  public void setCoolDown (int newVar) {
       coolDown = newVar;
   }
 
@@ -74,7 +70,7 @@ public class PowerUp {
      * Get the value of coolDown
      * @return the value of coolDown
      */
-  private int getCoolDown () {
+  public int getCoolDown () {
       return coolDown;
   }
 
@@ -82,7 +78,7 @@ public class PowerUp {
      * Set the value of isActive
      * @param newVar the new value of isActive
      */
-  private void setIsActive (boolean newVar) {
+  public void setIsActive (boolean newVar) {
       isActive = newVar;
   }
 
@@ -90,7 +86,7 @@ public class PowerUp {
      * Get the value of isActive
      * @return the value of isActive
      */
-  private boolean getIsActive () {
+  public boolean getIsActive () {
       return isActive;
   }
 
@@ -98,7 +94,7 @@ public class PowerUp {
      * Set the value of icon
      * @param newVar the new value of icon
      */
-  private void setIcon (String newVar) {
+  public void setIcon (String newVar) {
       icon = newVar;
   }
 
@@ -106,76 +102,7 @@ public class PowerUp {
      * Get the value of icon
      * @return the value of icon
      */
-  private String getIcon () {
+  public String getIcon () {
       return icon;
-  }
-
-    //
-    // Other methods
-    //
-
-    /**
-     * @return       String
-     */
-  public String getName()
-  {
-    }
-
-
-    /**
-     * @return       int
-     */
-  public int getDuration()
-  {
-    }
-
-
-    /**
-     * @return       int
-     */
-  public int getCoolDown()
-  {
-    }
-
-
-    /**
-     * @return       boolean
-     */
-  public boolean getActive()
-  {
-    }
-
-
-    /**
-     * @param        name
-     */
-  public void setName(String name)
-  {
-    }
-
-
-    /**
-     * @param        state
-     */
-  public void setActive(boolean state)
-  {
-    }
-
-
-    /**
-     * @param        icon
-     */
-  public void setIcon(String icon)
-  {
-    }
-
-
-    /**
-     * @return       String
-     */
-  public String getIcon()
-  {
-    }
-
-
+  } 
 }
