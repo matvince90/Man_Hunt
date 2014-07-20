@@ -103,7 +103,7 @@ public class PowerUp {
      * Get the value of isActive
      * @return the value of isActive
      */
-  public boolean getIsActive () {
+  public boolean IsActive () {
       return isActive;
   }
 

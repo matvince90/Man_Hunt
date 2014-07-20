@@ -85,11 +85,7 @@ class GameMatchSingleton {
   private Date getStartTime() {
       return startTime;
   }
-
-    //
-    // Other methods
-    //
-
+ 
     /**
      */
   public void updateMatchData()
@@ -150,7 +146,5 @@ class GameMatchSingleton {
   public void showTagButton()
   {
 	  
-  }
-
-
+  } 
 }
