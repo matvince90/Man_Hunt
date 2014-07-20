@@ -1,2 +1,7 @@
 */bin
 *.stackdump
+*/appcompat/R*
+*/BuildConfig*
+*.classpath
+*.prefs
+
