@@ -9,13 +9,17 @@ import java.sql.Date;
  */
 public class PowerUp {
 
+	public enum PowerUps{
+		Cloak
+	}
+	
     //
     // Fields
     // 
-  private String name;
+  private PowerUps type;
   private long startTime;
-  private int duration;
-  private int coolDownDuration;
+  private long duration;
+  private long coolDownDuration;
   private boolean isActive;
   private String iconPath;
   
@@ -24,11 +28,11 @@ public class PowerUp {
     //
   	
 	public PowerUp () {
-		this("Default");
+		this(PowerUps.Cloak);
 	};
 	
-	public PowerUp (String name){
-	  	this.name = name;
+	public PowerUp (PowerUps type){
+	  	this.type = type;
 	  	 
 	  	//duration in Milliseconds
 	  	this.duration = 60*1000;
@@ -44,19 +48,19 @@ public class PowerUp {
     //
   
     /**
-     * Set the value of name
-     * @param newVar the new value of name
+     * Set the value of type
+     * @param newVar the new value of type
      */
-  public void setName (String newVar) {
-      name = newVar;
+  public void setType (PowerUps newVar) {
+	  type = newVar;
   }
 
     /**
-     * Get the value of name
-     * @return the value of name
+     * Get the value of type
+     * @return the value of type
      */
-  public String getName () {
-      return name;
+  public PowerUps getType () {
+      return type;
   }
 
     /**
@@ -71,7 +75,7 @@ public class PowerUp {
      * Get the value of duration
      * @return the value of duration
      */
-  public int getDuration () {
+  public long getDuration () {
       return duration;
   }
 
@@ -87,7 +91,7 @@ public class PowerUp {
      * Get the value of coolDown
      * @return the value of coolDown
      */
-  public int getCoolDown () {
+  public long getCoolDown () {
       return coolDownDuration;
   }
 
