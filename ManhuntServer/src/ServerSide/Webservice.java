@@ -22,7 +22,6 @@ public class Webservice implements Runnable {
 	/**
 	 * A message structure for passing messages from the queue to the controller.
 	 * @author Team 3
-	 *
 	 */
 	public class WebserviceMessage {
 		public UUID id;			// id for this message
@@ -32,6 +31,7 @@ public class Webservice implements Runnable {
 
 	/**
 	 * The constructor initializes the queue which should be followed by setting the port and starting the service.
+	 * @param signalController is a active sempaphore for touching the message queue.
 	 */
 	public Webservice(Semaphore signalController) {
 		this.messageQueue = new LinkedList<WebserviceMessage>();
@@ -61,7 +61,7 @@ public class Webservice implements Runnable {
 
 
 	public void run() {
-		// TODO Auto-generated method stub
+		// todo start webservice.
 		
 	}
 
