@@ -3,6 +3,7 @@ package ServerSide;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.UUID;
+import java.util.concurrent.Semaphore;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -12,11 +13,11 @@ import javax.ws.rs.PathParam;
  * Class Webservice
  */
 @Path(value = "/manhunt")
-public class Webservice {
+public class Webservice implements Runnable {
 	
 	// instance variables
-	private int listenerPort;
-	private Queue<WebserviceMessage> messageQueue;
+	public volatile Queue<WebserviceMessage> messageQueue;
+	private Semaphore signalController;
 
 	/**
 	 * A message structure for passing messages from the queue to the controller.
@@ -32,29 +33,9 @@ public class Webservice {
 	/**
 	 * The constructor initializes the queue which should be followed by setting the port and starting the service.
 	 */
-	public Webservice() {
+	public Webservice(Semaphore signalController) {
 		this.messageQueue = new LinkedList<WebserviceMessage>();
-	}
-
-
-	/**
-	 * Set the value of listener Port
-	 * @param newVar the new value of listenerPort
-	 */
-	public void setListenerPort(int port) {
-		this.listenerPort = port;
-	}
-
-	/**
-	 * Get the listener Port
-	 * @return the value of listenerPort
-	 */
-	public int getListenerPort() {
-		return this.listenerPort;
-	}
-
-	public void start() {
-
+		this.signalController = signalController;
 	}
 
 	/**
@@ -70,7 +51,18 @@ public class Webservice {
 		mesg.id = UUID.randomUUID(); // collisions start after 2^29.
 		mesg.data = data;
 		mesg.action = action;
-		this.messageQueue.add(mesg);
+		// this section needs another runnable class to handle so that we don't block the web service listener
+		while(!this.signalController.tryAcquire())
+			this.messageQueue.add(mesg);
+		this.signalController.release();
+		this.signalController.notify();
+		// end of code that needs new class.
+	}
+
+
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

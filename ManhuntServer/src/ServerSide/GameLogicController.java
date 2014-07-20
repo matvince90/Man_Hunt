@@ -2,120 +2,114 @@ package ServerSide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.Semaphore;
 
 /**
  * Class GameLogicController
  */
 public class GameLogicController {
 
-	//
-	// Fields
-	//
+	// constants
+	private final int MAX_PLAYERS = 50;			// max players per instance.
+	private final int MAX_GAME_INSTANCES = 1;	// maximum number of instances.
+	private final int MAX_THREADS = 10;			// maximum thread number for pool
+	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
 
-	private List<GameMatch> gameMatch;
-	private int MAX_PLAYERS;
-	private int MAX_GAME_INSTANCES = 1;
-	private ServerSide.DbWrapper dbWrapper;
+	private List<GameMatch> gameMatchs;			// list of game matches
+	private ServerSide.DbWrapper dbWrapper;		// db class
+	private Webservice webService;
+	private Thread webServiceThread;
+	private Semaphore wsSignaller;
+	private boolean active = false;
+	private ExecutorService executor;			// thread pool
 
-	//
-	// Constructors
-	//
+	/**
+	 * 
+	 */
 	public GameLogicController() {
-		this.gameMatch = new ArrayList<GameMatch>();
+		this.gameMatchs = new ArrayList<GameMatch>();
 	};
-
-	//
-	// Methods
-	//
-
-	//
-	// Accessor methods
-	//
 
 	/**
 	 * Set the value of gameMatch
-	 * 
-	 * @param newVar
-	 *            the new value of gameMatch
+	 * @param gamematch the new value added to gameMatchs
 	 */
-	public void setGameMatch(List<GameMatch> newVar) {
-		gameMatch = newVar;
+	public void setGameMatch(GameMatch gameMatch) {
+		this.gameMatchs.add(gameMatch);
 	}
 
 	/**
 	 * Get the value of gameMatch
-	 * 
 	 * @return the value of gameMatch
 	 */
 	public List<GameMatch> getGameMatch() {
-		return gameMatch;
-	}
-
-	/**
-	 * Set the value of MAX_PLAYERS
-	 * 
-	 * @param newVar
-	 *            the new value of MAX_PLAYERS
-	 */
-	public void setMAX_PLAYERS(int newVar) {
-		MAX_PLAYERS = newVar;
-	}
-
-	/**
-	 * Get the value of MAX_PLAYERS
-	 * 
-	 * @return the value of MAX_PLAYERS
-	 */
-	public int getMAX_PLAYERS() {
-		return MAX_PLAYERS;
-	}
-
-	/**
-	 * Set the value of MAX_GAME_INSTANCES
-	 * 
-	 * @param newVar
-	 *            the new value of MAX_GAME_INSTANCES
-	 */
-	public void setMAX_GAME_INSTANCES(int newVar) {
-		MAX_GAME_INSTANCES = newVar;
-	}
-
-	/**
-	 * Get the value of MAX_GAME_INSTANCES
-	 * 
-	 * @return the value of MAX_GAME_INSTANCES
-	 */
-	public int getMAX_GAME_INSTANCES() {
-		return MAX_GAME_INSTANCES;
+		return this.gameMatchs;
 	}
 
 	/**
 	 * Set the value of dbWrapper
-	 * 
-	 * @param newVar
-	 *            the new value of dbWrapper
+	 * @param dbConthe new value of dbWrapper
 	 */
-	public void setDbWrapper(ServerSide.DbWrapper newVar) {
-		dbWrapper = newVar;
+	public void setDbWrapper(ServerSide.DbWrapper dbCon) {
+		this.dbWrapper = dbCon;
 	}
 
 	/**
 	 * Get the value of dbWrapper
-	 * 
 	 * @return the value of dbWrapper
 	 */
 	public ServerSide.DbWrapper getDbWrapper() {
-		return dbWrapper;
+		return this.dbWrapper;
 	}
 	
-	
+	/**
+	 * Begin running server
+	 */
 	public void start() {
+		System.out.println("Init concurrency support...");
+		this.executor = Executors.newFixedThreadPool(MAX_THREADS);
+		this.active = true;
+		this.wsSignaller = new Semaphore(SEMAPHORE_PERMITS);
+		
+		System.out.println("Starting web service...");
+		// init web service.
+		this.webService = new Webservice(this.wsSignaller);
+		this.webServiceThread = new Thread(this.webService);
+		this.webServiceThread.start();
+		
+		loop();
 		
 	}
-
-	//
-	// Other methods
-	//
+	
+	private void loop() {
+		System.out.println("Listening for actionables...");
+		while(this.active) {
+			try {
+				// wait for event
+				this.wsSignaller.wait();
+				System.out.println("Received request...");
+				// get a lock or wait for it
+				while(!this.wsSignaller.tryAcquire()) { }
+				// pass message to handler
+				Runnable mesgHandler = new MessageHandler(this.webService.messageQueue.peek());
+				// spawn handler if allowed
+				executor.execute(mesgHandler);
+				// thread spawn sucessful so pop mesg.
+				this.webService.messageQueue.poll();
+				// release lock
+				this.wsSignaller.release();
+			} catch(RejectedExecutionException E) {
+				// thread spawn limit reached, release lock and don't pop.
+				this.wsSignaller.release();
+				System.out.println(E.getMessage());
+			}catch(Exception E) {
+				System.out.println(E.getMessage());
+			}
+		}
+	}
 
 	/**
 	 * @return ServerSide.ServerGameMatch
@@ -145,6 +139,23 @@ public class GameLogicController {
 	 */
 	public boolean removeInstance(int id) {
 		return false;
+	}
+	
+	/**
+	 * handles all incoming actions
+	 * @author Team 3
+	 *
+	 */
+	public class MessageHandler implements Runnable {
+		
+		public MessageHandler(Webservice.WebserviceMessage mesg) {
+			
+		}
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 
 }
