@@ -1,124 +1,76 @@
 package ServerSide;
 
-import java.util.List;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.UUID;
+
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
  * Class Webservice
  */
+@Path(value = "/manhunt")
 public class Webservice {
-
-	//
-	// Fields
-	//
-
-	private List<Thread> threads;
+	
+	// instance variables
 	private int listenerPort;
-	private List<String> methodList;
-	private GameLogicController gameLogicController;
+	private Queue<WebserviceMessage> messageQueue;
 
-	//
-	// Constructors
-	//
+	/**
+	 * A message structure for passing messages from the queue to the controller.
+	 * @author Team 3
+	 *
+	 */
+	public class WebserviceMessage {
+		public UUID id;			// id for this message
+		public String action;	// the action which should be taken for this message
+		public String data;		// data contained in the message, seperated by :
+	}
+
+	/**
+	 * The constructor initializes the queue which should be followed by setting the port and starting the service.
+	 */
 	public Webservice() {
-	};
+		this.messageQueue = new LinkedList<WebserviceMessage>();
+	}
 
-	//
-	// Methods
-	//
-
-	//
-	// Accessor methods
-	//
 
 	/**
-	 * Set the value of threads
-	 * 
-	 * @param newVar
-	 *            the new value of threads
+	 * Set the value of listener Port
+	 * @param newVar the new value of listenerPort
 	 */
-	private void setThreads(List<Thread> newVar) {
-		threads = newVar;
+	public void setListenerPort(int port) {
+		this.listenerPort = port;
 	}
 
 	/**
-	 * Get the value of threads
-	 * 
-	 * @return the value of threads
-	 */
-	private List<Thread> getThreads() {
-		return threads;
-	}
-
-	/**
-	 * Set the value of listenerPort
-	 * 
-	 * @param newVar
-	 *            the new value of listenerPort
-	 */
-	private void setListenerPort(int newVar) {
-		listenerPort = newVar;
-	}
-
-	/**
-	 * Get the value of listenerPort
-	 * 
+	 * Get the listener Port
 	 * @return the value of listenerPort
 	 */
-	private int getListenerPort() {
-		return listenerPort;
+	public int getListenerPort() {
+		return this.listenerPort;
+	}
+
+	public void start() {
+
 	}
 
 	/**
-	 * Set the value of methodList
-	 * 
-	 * @param newVar
-	 *            the new value of methodList
-	 */
-	private void setMethodList(List<String> newVar) {
-		methodList = newVar;
-	}
-
-	/**
-	 * Get the value of methodList
-	 * 
-	 * @return the value of methodList
-	 */
-	private List<String> getMethodList() {
-		return methodList;
-	}
-
-	/**
-	 * Set the value of gameLogicController
-	 * 
-	 * @param newVar
-	 *            the new value of gameLogicController
-	 */
-	private void setGameLogicController(ServerSide.GameLogicController newVar) {
-		gameLogicController = newVar;
-	}
-
-	/**
-	 * Get the value of gameLogicController
-	 * 
-	 * @return the value of gameLogicController
-	 */
-	private ServerSide.GameLogicController getGameLogicController() {
-		return gameLogicController;
-	}
-
-	//
-	// Other methods
-	//
-
-	/**
-	 * @param method
-	 *            @RequestParam(value="method", required=false, defaultValue="")
-	 *            String method
+	 * This method receives and stashes the communication via HTTP service like TomCat.
+	 * @param action
 	 * @param data
-	 *            @RequestParam(value="data", required=false, defaultValue="")
-	 *            String data
 	 */
-	public void handleRequest(String method, String data) {
+	@POST
+	@Path(value = "/update")
+	public void handleRequest(@PathParam(value = "action") String action,
+			@PathParam(value = "data") String data) {
+		WebserviceMessage mesg = new WebserviceMessage();
+		mesg.id = UUID.randomUUID(); // collisions start after 2^29.
+		mesg.data = data;
+		mesg.action = action;
+		this.messageQueue.add(mesg);
 	}
 
 }
