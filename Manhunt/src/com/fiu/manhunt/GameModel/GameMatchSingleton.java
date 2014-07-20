@@ -8,13 +8,17 @@ class GameMatchSingleton {
   private GameMap gameMap;
   private List<Player> matchPlayers;
   private Player currentPlayer;
-  private Date startTime;
+  private long startTime;
+  private boolean matchStarted;
     
     //
     // Constructors
     //
   protected GameMatchSingleton () { 
-	  
+	  this.gameMap = null;
+	  this.matchPlayers = null;
+	  this.currentPlayer = null; 
+	  this.matchStarted = false; 
   };
   
     //
@@ -29,6 +33,27 @@ class GameMatchSingleton {
 	     
 	     return instance;
 	  }
+  
+/**
+ * Starts GameMatch
+ */
+  public void startMatch()
+  {
+	  if(!matchStarted)
+	  {
+		  this.startTime = System.currentTimeMillis(); 
+		  this.matchStarted = true;
+	  }
+  }
+  
+  /**
+   * Ends GameMatch
+   */
+
+  public void endMatch()
+  {
+   
+  }
   
     /**
      * Set the value of gameMap
@@ -74,7 +99,7 @@ class GameMatchSingleton {
      * Set the value of startTime
      * @param newVar the new value of startTime
      */
-  private void setStartTime(Date newVar) {
+  private void setStartTime(long newVar) {
       startTime = newVar;
   }
 
@@ -82,7 +107,7 @@ class GameMatchSingleton {
      * Get the value of startTime
      * @return the value of startTime
      */
-  private Date getStartTime() {
+  private long getStartTime() {
       return startTime;
   }
  
@@ -91,14 +116,6 @@ class GameMatchSingleton {
   public void updateMatchData()
   {
     
-  }
-
-  
-    /**
-     */
-  public void endMatch()
-  {
-   
   }
  
 //    /**
