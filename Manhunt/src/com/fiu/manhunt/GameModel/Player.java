@@ -1,12 +1,8 @@
 package com.fiu.manhunt.GameModel;
 
-import android.location.Location;
-
+import android.location.Location; 
 import java.util.*; 
-
-/**
- * Class PlayerInformation
- */
+ 
 public class Player {
  
 	public enum Type{
@@ -14,7 +10,7 @@ public class Player {
 		Prey
 	}
 	
-  private Date powerUpUseTimestamp;
+  private long powerUpUseTimestamp;
   private String name;
   private String playerType;
   private List<PowerUp> powerUpInventory;
@@ -24,8 +20,7 @@ public class Player {
     //
     // Constructors
     //
-    public Player (int id, Player.Type type) { 
-    	this.powerUpUseTimestamp = null;
+    public Player (int id, Player.Type type) {  
     	this.powerUpInventory = new LinkedList<PowerUp>();
     	this.location = null;
     	this.playerType = type.toString();  
@@ -37,14 +32,30 @@ public class Player {
      * @param newVar the new value of powerUpUseTimestamp
      */
   public void resetPowerUpUseTimestamp () {
-      powerUpUseTimestamp = Calendar.getInstance().getTime();
+      powerUpUseTimestamp = System.currentTimeMillis();
   }
+  
+  /**
+   * Get the value of location
+   * @return the value of location
+   */
+	public Location getLocation () {
+	    return location;
+	}
+  
+	  /**
+	   * Hides player's current location
+	   */
+	  
+	  public void hideLocation(){
+		  this.location = null;
+	  }
 
     /**
      * Get the value of powerUpUseTimestamp
      * @return the value of powerUpUseTimestamp
      */
-  public Date getPowerUpLastUsedTimestamp () {
+  public long getPowerUpLastUsedTimestamp () {
       return powerUpUseTimestamp;
   }
 
@@ -101,15 +112,7 @@ public class Player {
   private void setLocation(Location newVar) {
       location = newVar;
   }
-
-    /**
-     * Get the value of location
-     * @return the value of location
-     */
-  public Location getLocation () {
-      return location;
-  }
-
+ 
     /**
      * Set the value of id
      * @param newVar the new value of id
@@ -129,9 +132,10 @@ public class Player {
     /**
      * @param        playerName
      */
-  public void setPlayerName(String playerName)
+  public void getPlayerName()
   {
-	  this.name = playerName;
+	  //Logic to get playerName using player id
+	  
   }
   
     /**
