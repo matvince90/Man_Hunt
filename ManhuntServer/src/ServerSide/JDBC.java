@@ -10,12 +10,12 @@ class JDBC implements DbWrapper {
     // Fields
     //
 
-  private Object dbConnection;
+  private Object _dbConnection;
   
     //
     // Constructors
     //
-    public JDBC () { dbConnection = new Object(); }
+    public JDBC () { _dbConnection = new Object(); }
 
 	public int addPlayer(Player playerInformation) {
 		// TODO Auto-generated method stub

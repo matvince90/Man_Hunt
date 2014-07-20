@@ -2,6 +2,7 @@ package ServerSide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -9,35 +10,22 @@ import java.util.List;
  */
 public class GameMatch {
 
-    //
-    // Fields
-    //
-
-  private List<Player> matchPlayers;
-  private int startTimestamp;
-  private int id;
-  private boolean active;
+  private List<Player> _matchPlayers;
+  private int _startTimestamp;
+  private int _id;
+  private boolean _active;
   
     //
     // Constructors
     //
-    public GameMatch () { this.matchPlayers = new ArrayList<Player>(); };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
+    public GameMatch () { _matchPlayers = new ArrayList<Player>(); };
 
     /**
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
   public void addMatchPlayer (Player player) {
-      this.matchPlayers.add(player);
+      _matchPlayers.add(player);
   }
 
     /**
@@ -45,7 +33,23 @@ public class GameMatch {
      * @return the value of matchPlayers
      */
   public List<Player> getMatchPlayers () {
-      return this.matchPlayers;
+      return _matchPlayers;
+  }
+  
+  public Player getMatchPlayer(UUID uid) {
+	  for(Player p: _matchPlayers) {
+		  if(uid.equals(p.getId()))
+			  return p;
+	  }
+	  return null;
+  }
+  
+  public void updateMatchPlayer(Player player) {
+	  for(int i = 0; i < _matchPlayers.size(); i++) {
+		  Player p = _matchPlayers.get(i);
+		  if(p.getId().equals(player.getId()))
+			  _matchPlayers.add(i, player);
+	  }
   }
 
     /**
@@ -53,7 +57,7 @@ public class GameMatch {
      * @param newVar the new value of startTimestamp
      */
   public void setStartTimestamp (int time) {
-      startTimestamp = time;
+      _startTimestamp = time;
   }
 
     /**
@@ -61,15 +65,15 @@ public class GameMatch {
      * @return the value of startTimestamp
      */
   public int getStartTimestamp () {
-      return startTimestamp;
+      return _startTimestamp;
   }
 
     /**
      * Set the value of id
      * @param newVar the new value of id
      */
-  public void setId (int newVar) {
-      id = newVar;
+  public void setId (int id) {
+      _id = id;
   }
 
     /**
@@ -77,15 +81,15 @@ public class GameMatch {
      * @return the value of id
      */
   public int getId () {
-      return id;
+      return _id;
   }
 
     /**
      * Set the value of active
      * @param newVar the new value of active
      */
-  public void setActive (boolean newVar) {
-      active = newVar;
+  public void setActive (boolean active) {
+      _active = active;
   }
 
     /**
@@ -93,7 +97,7 @@ public class GameMatch {
      * @return the value of active
      */
   public boolean getActive () {
-      return active;
+      return _active;
   }
 
     //

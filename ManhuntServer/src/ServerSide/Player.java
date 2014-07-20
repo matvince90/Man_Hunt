@@ -1,5 +1,7 @@
 package ServerSide;
 
+import java.util.UUID;
+
 /**
  * Class ServerPlayerInformation
  */
@@ -9,11 +11,11 @@ class Player {
 	// Fields
 	//
 
-	private String email;
-	private float latitude;
-	private float longitude;
-	private int id;
-	private int type;
+	private String _email;
+	private float _latitude;
+	private float _longitude;
+	private UUID _id;
+	private int _type;
 
 	//
 	// Constructors
@@ -44,35 +46,35 @@ class Player {
 	 * @return String
 	 */
 	public String getEmail() {
-		return email;
+		return _email;
 	}
 
 	/**
 	 * @return int
 	 */
-	public int getId() {
-		return id;
+	public UUID getId() {
+		return _id;
 	}
 
 	/**
 	 * @return float
 	 */
 	public float getlatititude() {
-		return latitude;
+		return _latitude;
 	}
 
 	/**
 	 * @return float
 	 */
 	public float getLongitude() {
-		return longitude;
+		return _longitude;
 	}
 
 	/**
 	 * @return int
 	 */
-	public int getStatus() {
-		return id;
+	public int getType() {
+		return _type;
 	}
 
 	/**
@@ -84,7 +86,8 @@ class Player {
 	/**
 	 * @param id
 	 */
-	public void setId(int id) {
+	public void setId(UUID id) {
+		_id = id;
 	}
 
 	/**
@@ -103,11 +106,7 @@ class Player {
 	 * @param status
 	 */
 	public void setType(int type) {
-		this.type = type;
-	}
-	
-	public int getType() {
-		return this.type;
+		_type = type;
 	}
 
 }

@@ -1,7 +1,8 @@
 */bin
 *.stackdump
+*/.classpath
+*/org.eclipse.jdt.core.prefs
 */appcompat/R*
 */BuildConfig*
-*.classpath
-*.prefs
+
 

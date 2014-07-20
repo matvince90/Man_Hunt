@@ -17,7 +17,7 @@ public class Webservice implements Runnable {
 	
 	// instance variables
 	public volatile Queue<WebserviceMessage> messageQueue;
-	private Semaphore signalController;
+	private Semaphore _signalController;
 
 	/**
 	 * A message structure for passing messages from the queue to the controller.
@@ -35,7 +35,7 @@ public class Webservice implements Runnable {
 	 */
 	public Webservice(Semaphore signalController) {
 		this.messageQueue = new LinkedList<WebserviceMessage>();
-		this.signalController = signalController;
+		_signalController = signalController;
 	}
 
 	/**
@@ -52,10 +52,10 @@ public class Webservice implements Runnable {
 		mesg.data = data;
 		mesg.action = action;
 		// this section needs another runnable class to handle so that we don't block the web service listener
-		while(!this.signalController.tryAcquire())
+		while(!_signalController.tryAcquire())
 			this.messageQueue.add(mesg);
-		this.signalController.release();
-		this.signalController.notify();
+		_signalController.release();
+		_signalController.notify();
 		// end of code that needs new class.
 	}
 

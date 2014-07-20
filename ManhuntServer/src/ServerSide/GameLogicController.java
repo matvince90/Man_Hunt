@@ -2,6 +2,7 @@ package ServerSide;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -18,19 +19,26 @@ public class GameLogicController {
 	private final int MAX_THREADS = 10;			// maximum thread number for pool
 	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
 
-	private List<GameMatch> gameMatchs;			// list of game matches
-	private ServerSide.DbWrapper dbWrapper;		// db class
-	private Webservice webService;
-	private Thread webServiceThread;
-	private Semaphore wsSignaller;
-	private boolean active = false;
-	private ExecutorService executor;			// thread pool
+	private volatile List<GameMatch> _gameMatchs;			// list of game matches
+	private ServerSide.DbWrapper _dbWrapper;		// db class
+	
+	// web service and threading
+	private Webservice _webService;
+	private Thread _webServiceThread;
+	
+	// locks
+	private Semaphore _wsSignaller;
+	private Semaphore _mhSignaller;
+	
+	//
+	private boolean _active = false;
+	private ExecutorService _executor;			// thread pool
 
 	/**
 	 * 
 	 */
 	public GameLogicController() {
-		this.gameMatchs = new ArrayList<GameMatch>();
+		_gameMatchs = new ArrayList<GameMatch>();
 	};
 
 	/**
@@ -38,7 +46,7 @@ public class GameLogicController {
 	 * @param gamematch the new value added to gameMatchs
 	 */
 	public void setGameMatch(GameMatch gameMatch) {
-		this.gameMatchs.add(gameMatch);
+		_gameMatchs.add(gameMatch);
 	}
 
 	/**
@@ -46,7 +54,7 @@ public class GameLogicController {
 	 * @return the value of gameMatch
 	 */
 	public List<GameMatch> getGameMatch() {
-		return this.gameMatchs;
+		return _gameMatchs;
 	}
 
 	/**
@@ -54,7 +62,7 @@ public class GameLogicController {
 	 * @param dbConthe new value of dbWrapper
 	 */
 	public void setDbWrapper(ServerSide.DbWrapper dbCon) {
-		this.dbWrapper = dbCon;
+		_dbWrapper = dbCon;
 	}
 
 	/**
@@ -62,7 +70,7 @@ public class GameLogicController {
 	 * @return the value of dbWrapper
 	 */
 	public ServerSide.DbWrapper getDbWrapper() {
-		return this.dbWrapper;
+		return _dbWrapper;
 	}
 	
 	/**
@@ -70,15 +78,16 @@ public class GameLogicController {
 	 */
 	public void start() {
 		System.out.println("Init concurrency support...");
-		this.executor = Executors.newFixedThreadPool(MAX_THREADS);
-		this.active = true;
-		this.wsSignaller = new Semaphore(SEMAPHORE_PERMITS);
+		_executor = Executors.newFixedThreadPool(MAX_THREADS);
+		_active = true;
+		_wsSignaller = new Semaphore(SEMAPHORE_PERMITS);
+		_mhSignaller = new Semaphore(SEMAPHORE_PERMITS);
 		
 		System.out.println("Starting web service...");
 		// init web service.
-		this.webService = new Webservice(this.wsSignaller);
-		this.webServiceThread = new Thread(this.webService);
-		this.webServiceThread.start();
+		_webService = new Webservice(_wsSignaller);
+		_webServiceThread = new Thread(_webService);
+		_webServiceThread.start();
 		
 		loop();
 		
@@ -86,24 +95,24 @@ public class GameLogicController {
 	
 	private void loop() {
 		System.out.println("Listening for actionables...");
-		while(this.active) {
+		while(_active) {
 			try {
 				// wait for event
-				this.wsSignaller.wait();
+				_wsSignaller.wait();
 				System.out.println("Received request...");
 				// get a lock or wait for it
-				while(!this.wsSignaller.tryAcquire()) { }
-				// pass message to handler
-				Runnable mesgHandler = new MessageHandler(this.webService.messageQueue.peek());
+				while(!_wsSignaller.tryAcquire()) { }
+				// pass message to handler has hard coded game match!!!
+				Runnable mesgHandler = new MessageHandler(_webService.messageQueue.peek(), _mhSignaller, _gameMatchs.get(0));
 				// spawn handler if allowed
-				executor.execute(mesgHandler);
+				_executor.execute(mesgHandler);
 				// thread spawn sucessful so pop mesg.
-				this.webService.messageQueue.poll();
+				_webService.messageQueue.poll();
 				// release lock
-				this.wsSignaller.release();
+				_wsSignaller.release();
 			} catch(RejectedExecutionException E) {
 				// thread spawn limit reached, release lock and don't pop.
-				this.wsSignaller.release();
+				_wsSignaller.release();
 				System.out.println(E.getMessage());
 			}catch(Exception E) {
 				System.out.println(E.getMessage());
@@ -112,24 +121,10 @@ public class GameLogicController {
 	}
 
 	/**
-	 * @return ServerSide.ServerGameMatch
-	 * @param player
-	 */
-	public GameMatch playerUpdate(Player player) {
-		return null;
-	}
-
-	/**
-	 * @param playerId
-	 */
-	public void removePlayer(int playerId) {
-	}
-
-	/**
 	 * @return int
 	 * @param new_parameter
 	 */
-	public int createInstance(Player new_parameter) {
+	private int createInstance(Player new_parameter) {
 		return 0;
 	}
 
@@ -137,7 +132,7 @@ public class GameLogicController {
 	 * @return boolean
 	 * @param id
 	 */
-	public boolean removeInstance(int id) {
+	private boolean removeInstance(int id) {
 		return false;
 	}
 	
@@ -148,12 +143,40 @@ public class GameLogicController {
 	 */
 	public class MessageHandler implements Runnable {
 		
-		public MessageHandler(Webservice.WebserviceMessage mesg) {
-			
+		private Webservice.WebserviceMessage _msg;
+		private Semaphore _gameMatchSignal;
+		private GameMatch _gameMatch;
+		
+		public MessageHandler(Webservice.WebserviceMessage mesg, Semaphore gameMatchSignal, GameMatch gameMatch) {
+			_msg = mesg;
 		}
+		
 		public void run() {
-			// TODO Auto-generated method stub
-			
+			switch(_msg.action) {
+				case "Update":
+					updatePlayer(parsePlayer());
+					break;
+				default:
+					break;
+			}
+		}
+		
+		// blocking code.
+		private void updatePlayer(Player player) {
+			while(_gameMatchSignal.tryAcquire());
+			_gameMatch.updateMatchPlayer(player);
+			_gameMatchSignal.release();
+		}
+		
+		private Player parsePlayer() {
+			Player player = new Player();
+			String[] arr = _msg.data.split(":");
+			player.setId(UUID.fromString(arr[1]));
+			player.setEmail(arr[2]);
+			player.setLatitude(Long.getLong(arr[3]));
+			player.setLongitude(Long.getLong(arr[4]));
+			player.setType(Integer.parseInt(arr[5]));
+			return player;
 		}
 		
 	}
