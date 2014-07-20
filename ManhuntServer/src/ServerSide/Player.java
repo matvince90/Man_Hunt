@@ -13,7 +13,7 @@ class Player {
 	private float latitude;
 	private float longitude;
 	private int id;
-	private int status;
+	private int type;
 
 	//
 	// Constructors
@@ -58,14 +58,14 @@ class Player {
 	 * @return float
 	 */
 	public float getlatititude() {
-		return id;
+		return latitude;
 	}
 
 	/**
 	 * @return float
 	 */
 	public float getLongitude() {
-		return id;
+		return longitude;
 	}
 
 	/**
@@ -102,7 +102,12 @@ class Player {
 	/**
 	 * @param status
 	 */
-	public void setStatus(int status) {
+	public void setType(int type) {
+		this.type = type;
+	}
+	
+	public int getType() {
+		return this.type;
 	}
 
 }

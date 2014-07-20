@@ -1,5 +1,6 @@
 package ServerSide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +21,7 @@ public class GameLogicController {
 	// Constructors
 	//
 	public GameLogicController() {
+		this.gameMatch = new ArrayList<GameMatch>();
 	};
 
 	//
@@ -36,7 +38,7 @@ public class GameLogicController {
 	 * @param newVar
 	 *            the new value of gameMatch
 	 */
-	private void setGameMatch(List<GameMatch> newVar) {
+	public void setGameMatch(List<GameMatch> newVar) {
 		gameMatch = newVar;
 	}
 
@@ -45,7 +47,7 @@ public class GameLogicController {
 	 * 
 	 * @return the value of gameMatch
 	 */
-	private List<GameMatch> getGameMatch() {
+	public List<GameMatch> getGameMatch() {
 		return gameMatch;
 	}
 
@@ -55,7 +57,7 @@ public class GameLogicController {
 	 * @param newVar
 	 *            the new value of MAX_PLAYERS
 	 */
-	private void setMAX_PLAYERS(int newVar) {
+	public void setMAX_PLAYERS(int newVar) {
 		MAX_PLAYERS = newVar;
 	}
 
@@ -64,7 +66,7 @@ public class GameLogicController {
 	 * 
 	 * @return the value of MAX_PLAYERS
 	 */
-	private int getMAX_PLAYERS() {
+	public int getMAX_PLAYERS() {
 		return MAX_PLAYERS;
 	}
 
@@ -74,7 +76,7 @@ public class GameLogicController {
 	 * @param newVar
 	 *            the new value of MAX_GAME_INSTANCES
 	 */
-	private void setMAX_GAME_INSTANCES(int newVar) {
+	public void setMAX_GAME_INSTANCES(int newVar) {
 		MAX_GAME_INSTANCES = newVar;
 	}
 
@@ -83,7 +85,7 @@ public class GameLogicController {
 	 * 
 	 * @return the value of MAX_GAME_INSTANCES
 	 */
-	private int getMAX_GAME_INSTANCES() {
+	public int getMAX_GAME_INSTANCES() {
 		return MAX_GAME_INSTANCES;
 	}
 
@@ -93,7 +95,7 @@ public class GameLogicController {
 	 * @param newVar
 	 *            the new value of dbWrapper
 	 */
-	private void setDbWrapper(ServerSide.DbWrapper newVar) {
+	public void setDbWrapper(ServerSide.DbWrapper newVar) {
 		dbWrapper = newVar;
 	}
 
@@ -102,8 +104,13 @@ public class GameLogicController {
 	 * 
 	 * @return the value of dbWrapper
 	 */
-	private ServerSide.DbWrapper getDbWrapper() {
+	public ServerSide.DbWrapper getDbWrapper() {
 		return dbWrapper;
+	}
+	
+	
+	public void start() {
+		
 	}
 
 	//
@@ -112,9 +119,9 @@ public class GameLogicController {
 
 	/**
 	 * @return ServerSide.ServerGameMatch
-	 * @param playerInformation
+	 * @param player
 	 */
-	public GameMatch playerUpdate(Player playerInformation) {
+	public GameMatch playerUpdate(Player player) {
 		return null;
 	}
 

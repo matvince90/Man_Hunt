@@ -15,7 +15,7 @@ class JDBC implements DbWrapper {
     //
     // Constructors
     //
-    public JDBC () { }
+    public JDBC () { dbConnection = new Object(); }
 
 	public int addPlayer(Player playerInformation) {
 		// TODO Auto-generated method stub

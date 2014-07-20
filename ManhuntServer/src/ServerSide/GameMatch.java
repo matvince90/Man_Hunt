@@ -1,5 +1,6 @@
 package ServerSide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,7 +21,7 @@ public class GameMatch {
     //
     // Constructors
     //
-    public GameMatch () { };
+    public GameMatch () { this.matchPlayers = new ArrayList<Player>(); };
   
     //
     // Methods
@@ -35,31 +36,31 @@ public class GameMatch {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-  private void setMatchPlayers (List<Player> newVar) {
-      matchPlayers = newVar;
+  public void addMatchPlayer (Player player) {
+      this.matchPlayers.add(player);
   }
 
     /**
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  private List<Player> getMatchPlayers () {
-      return matchPlayers;
+  public List<Player> getMatchPlayers () {
+      return this.matchPlayers;
   }
 
     /**
      * Set the value of startTimestamp
      * @param newVar the new value of startTimestamp
      */
-  private void setStartTimestamp (int newVar) {
-      startTimestamp = newVar;
+  public void setStartTimestamp (int time) {
+      startTimestamp = time;
   }
 
     /**
      * Get the value of startTimestamp
      * @return the value of startTimestamp
      */
-  private int getStartTimestamp () {
+  public int getStartTimestamp () {
       return startTimestamp;
   }
 
@@ -67,7 +68,7 @@ public class GameMatch {
      * Set the value of id
      * @param newVar the new value of id
      */
-  private void setId (int newVar) {
+  public void setId (int newVar) {
       id = newVar;
   }
 
@@ -75,7 +76,7 @@ public class GameMatch {
      * Get the value of id
      * @return the value of id
      */
-  private int getId () {
+  public int getId () {
       return id;
   }
 
@@ -83,7 +84,7 @@ public class GameMatch {
      * Set the value of active
      * @param newVar the new value of active
      */
-  private void setActive (boolean newVar) {
+  public void setActive (boolean newVar) {
       active = newVar;
   }
 
@@ -91,7 +92,7 @@ public class GameMatch {
      * Get the value of active
      * @return the value of active
      */
-  private boolean getActive () {
+  public boolean getActive () {
       return active;
   }
 
