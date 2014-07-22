@@ -43,7 +43,15 @@ class GameMatchSingleton {
 	  {
 		  this.startTime = System.currentTimeMillis(); 
 		  this.matchStarted = true;
-	  }
+	  } 
+  }
+  
+  /**
+   * Main Game Loop
+   */
+  public void GameLoop()
+  {
+	  
   }
   
   /**
@@ -53,6 +61,11 @@ class GameMatchSingleton {
   public void endMatch()
   {
    
+  }
+  
+  public void hideCurrentPlayer()
+  {
+	  this.currentPlayer.hideLocation();
   }
   
     /**

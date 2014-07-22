@@ -30,12 +30,12 @@ package com.fiu.manhunt.GameModel;
 		  if(this.powerUp.getType() == PowerUp.PowerUps.Cloak)
 		  {
 			  //Hides location indefinitely until location is set to be displayed again
-			  this.player.hideLocation(); 
+			  this.gameMatch.hideCurrentPlayer(); 
 			  
 			  while ((System.currentTimeMillis()-startTime)< powerUpDuration)
 			  {
 				  try{
-					  Thread.sleep(1000);
+					  Thread.sleep(powerUpDuration);
 				  }
 				  catch(InterruptedException e)
 				  {

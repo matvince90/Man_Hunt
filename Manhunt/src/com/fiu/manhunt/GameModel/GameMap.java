@@ -1,4 +1,4 @@
-package GameModel;
+package com.fiu.manhunt.GameModel;
 
 
 /**
