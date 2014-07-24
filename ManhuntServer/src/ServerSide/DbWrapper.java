@@ -1,11 +1,13 @@
 package ServerSide;
 
+import java.util.List;
+import java.util.UUID;
+
 
 /**
  * Class DbWrapper
  */ 
 public interface DbWrapper {
-
 
     /**
      * @return       int
@@ -13,20 +15,24 @@ public interface DbWrapper {
      */
   public int addPlayer(Player playerInformation);
 
-
     /**
      * @return       boolean
      * @param        playerId
      */
-  public boolean removePlayer(int playerId);
-
+  public boolean removePlayer(UUID playerId);
+  
+  /**
+   * 
+   * @param playerId
+   * @return
+   */
+  public List getPlayer(UUID playerId);
 
     /**
      * @return       ServerSide.ServerGameMatch
      * @param        playerInformation
      */
-  public GameMatch updatePlayer(Player playerInformation);
-
+  public List updatePlayer(Player playerInformation);
 
     /**
      * @return       boolean
@@ -34,19 +40,24 @@ public interface DbWrapper {
      */
   public boolean banPlayer(Player playerInformation);
 
-
     /**
      * @return       int
      * @param        gameMatch
      */
   public int createGameMatch(GameMatch gameMatch);
 
-
     /**
      * @return       boolean
      * @param        gameMatchId
      */
   public boolean removeGameMatch(int gameMatchId);
+  
+  /**
+   * 
+   * @param gameMatchId
+   * @return
+   */
+  public List getGameMatch(int gameMatchId);
 
 
     /**
