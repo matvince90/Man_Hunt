@@ -72,7 +72,7 @@ class GameMatchSingleton {
      * Set the value of gameMap
      * @param newVar the new value of gameMap
      */
-  private void setGameMap (GameMap newVar) {
+  public void setGameMap (GameMap newVar) {
       gameMap = newVar;
   }
 
@@ -80,7 +80,7 @@ class GameMatchSingleton {
      * Get the value of gameMap
      * @return the value of gameMap
      */
-  private GameMap getGameMap () {
+  public GameMap getGameMap () {
       return gameMap;
   }
 
@@ -88,7 +88,7 @@ class GameMatchSingleton {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-  private void setMatchPlayers (List<Player> newVar) {
+  public void setMatchPlayers (List<Player> newVar) {
       matchPlayers = newVar;
   }
 
@@ -96,7 +96,7 @@ class GameMatchSingleton {
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  private List<Player> getMatchPlayers () {
+  public List<Player> getMatchPlayers () {
       return matchPlayers;
   }
 
@@ -104,7 +104,7 @@ class GameMatchSingleton {
      * Set the value of currentPlayer
      * @param newVar the new value of currentPlayer
      */
-  private void setCurrentPlayer(Player player) {
+  public void setCurrentPlayer(Player player) {
       currentPlayer = player;
   }
   
@@ -112,7 +112,7 @@ class GameMatchSingleton {
      * Set the value of startTime
      * @param newVar the new value of startTime
      */
-  private void setStartTime(long newVar) {
+  public void setStartTime(long newVar) {
       startTime = newVar;
   }
 
@@ -120,7 +120,7 @@ class GameMatchSingleton {
      * Get the value of startTime
      * @return the value of startTime
      */
-  private long getStartTime() {
+  public long getStartTime() {
       return startTime;
   }
  

@@ -1,4 +1,4 @@
-package ComManager;
+package com.fiu.manhunt.ComManager;
 
 
 /**

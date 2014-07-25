@@ -1,8 +1,5 @@
 package com.fiu.manhunt.GameModel;
-
-import java.util.*;
-import java.sql.Date;
-
+ 
 
 /**
  * Class PowerUp
@@ -127,11 +124,11 @@ public class PowerUp {
       return iconPath;
   }
 
-	private long getStartTime() {
+  public long getStartTime() {
 		return startTime;
 	}
 
-	private void setStartTime(long startTime) {
+  public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	} 
 }

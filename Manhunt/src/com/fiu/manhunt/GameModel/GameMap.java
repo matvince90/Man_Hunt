@@ -1,32 +1,22 @@
 package com.fiu.manhunt.GameModel;
 
+import android.location.Location;
+
 
 /**
  * Class GameMap
  */
 public class GameMap {
-
+ 
     //
     // Fields
     //
 
   private uiGameMap uiGameMap;
   private float[] gameBoundaries;
-  
-    //
-    // Constructors
-    //
-    public GameMap () { };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
+   
+  public GameMap () { };
+   
     /**
      * Set the value of uiGameMap
      * @param newVar the new value of uiGameMap
