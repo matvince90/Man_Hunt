@@ -20,32 +20,57 @@ public class GameLogicController {
 	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
 
 	private volatile List<GameMatch> _gameMatchs;			// list of game matches
-	private ServerSide.DbWrapper _dbWrapper;		// db class
+	private ServerSide.DbWrapper _dbWrapper;	// db class
 	
 	// web service and threading
-	private Webservice _webService;
-	private Thread _webServiceThread;
+	private Webservice _webService;				// web service.
+	private Thread _webServiceThread;			// the thread concerned with the webservice
 	
 	// locks
-	private Semaphore _wsSignaller;
-	private Semaphore _mhSignaller;
+	private Semaphore _wsSignaller;				// concurrency via webservice
+	private Semaphore _mhSignaller;				// concurrency via webservice
 	
 	//
-	private boolean _active = false;
+	private boolean _active = false;			// loop termination.
 	private ExecutorService _executor;			// thread pool
 
 	/**
 	 * 
 	 */
-	public GameLogicController() {
+	public GameLogicController(ServerSide.DbWrapper dbCon) {
 		_gameMatchs = new ArrayList<GameMatch>();
+		_dbWrapper = dbCon;
 	};
-
+	
+	/**
+	 * Begin running server
+	 */
+	public void start() {
+		// init thread pool and semaphores
+		System.out.println("Init concurrency support...");
+		_executor = Executors.newFixedThreadPool(MAX_THREADS);
+		_active = true;
+		_wsSignaller = new Semaphore(SEMAPHORE_PERMITS);
+		_mhSignaller = new Semaphore(SEMAPHORE_PERMITS);
+		
+		// init web service
+		System.out.println("Starting web service...");
+		
+		// init web service.
+		_webService = new Webservice(_wsSignaller);
+		_webServiceThread = new Thread(_webService);
+		_webServiceThread.start();
+		
+		// start the loop
+		loop();
+		
+	}
+	
 	/**
 	 * Set the value of gameMatch
 	 * @param gamematch the new value added to gameMatchs
 	 */
-	public void setGameMatch(GameMatch gameMatch) {
+	private void setGameMatch(GameMatch gameMatch) {
 		_gameMatchs.add(gameMatch);
 	}
 
@@ -53,93 +78,49 @@ public class GameLogicController {
 	 * Get the value of gameMatch
 	 * @return the value of gameMatch
 	 */
-	public List<GameMatch> getGameMatch() {
+	private List<GameMatch> getGameMatch() {
 		return _gameMatchs;
-	}
-
-	/**
-	 * Set the value of dbWrapper
-	 * @param dbConthe new value of dbWrapper
-	 */
-	public void setDbWrapper(ServerSide.DbWrapper dbCon) {
-		_dbWrapper = dbCon;
-	}
-
-	/**
-	 * Get the value of dbWrapper
-	 * @return the value of dbWrapper
-	 */
-	public ServerSide.DbWrapper getDbWrapper() {
-		return _dbWrapper;
-	}
-	
-	/**
-	 * Begin running server
-	 */
-	public void start() {
-		System.out.println("Init concurrency support...");
-		_executor = Executors.newFixedThreadPool(MAX_THREADS);
-		_active = true;
-		_wsSignaller = new Semaphore(SEMAPHORE_PERMITS);
-		_mhSignaller = new Semaphore(SEMAPHORE_PERMITS);
-		
-		System.out.println("Starting web service...");
-		// init web service.
-		_webService = new Webservice(_wsSignaller);
-		_webServiceThread = new Thread(_webService);
-		_webServiceThread.start();
-		
-		loop();
-		
 	}
 	
 	private void loop() {
 		System.out.println("Listening for actionables...");
 		while(_active) {
 			try {
-				// wait for event
+				// wait for event signal
 				_wsSignaller.wait();
 				System.out.println("Received request...");
+				
 				// get a lock or wait for it
 				while(!_wsSignaller.tryAcquire()) { }
-				// pass message to handler has hard coded game match!!!
+				
+				// pass message to handler (has hard coded game match!!!)
 				Runnable mesgHandler = new MessageHandler(_webService.messageQueue.peek(), _mhSignaller, _gameMatchs.get(0));
+				
 				// spawn handler if allowed
 				_executor.execute(mesgHandler);
-				// thread spawn sucessful so pop mesg.
+				
+				// thread spawn successful so pop mesg.
 				_webService.messageQueue.poll();
+				
 				// release lock
 				_wsSignaller.release();
+				
 			} catch(RejectedExecutionException E) {
 				// thread spawn limit reached, release lock and don't pop.
 				_wsSignaller.release();
+				
 				System.out.println(E.getMessage());
+				
 			}catch(Exception E) {
+				// something else broke.
 				System.out.println(E.getMessage());
 			}
 		}
 	}
-
-	/**
-	 * @return int
-	 * @param new_parameter
-	 */
-	private int createInstance(Player new_parameter) {
-		return 0;
-	}
-
-	/**
-	 * @return boolean
-	 * @param id
-	 */
-	private boolean removeInstance(int id) {
-		return false;
-	}
 	
 	/**
-	 * handles all incoming actions
+	 * local class that handles all incoming actions
 	 * @author Team 3
-	 *
 	 */
 	public class MessageHandler implements Runnable {
 		

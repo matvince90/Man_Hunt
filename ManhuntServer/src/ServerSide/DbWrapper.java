@@ -54,6 +54,12 @@ public interface DbWrapper {
   
   /**
    * 
+   * @return list of game matches currently active.
+   */
+  public List getGameMatches();
+  
+  /**
+   * 
    * @param gameMatchId
    * @return
    */
