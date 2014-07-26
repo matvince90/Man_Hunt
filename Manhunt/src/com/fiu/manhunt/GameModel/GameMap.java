@@ -8,7 +8,12 @@ import android.location.Location;
  */
 public class GameMap {
  
-    //
+    /*
+     *List of players
+     *current player points and compare them to the predators and signal the controller regarding distances
+     *This deals with the logic behind the map, not the map itself.  
+     */
+	
     // Fields
     //
 
