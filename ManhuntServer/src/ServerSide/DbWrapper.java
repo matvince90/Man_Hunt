@@ -1,4 +1,4 @@
-package ServerSide;
+//package ServerSide;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,10 +10,10 @@ import java.util.UUID;
 public interface DbWrapper {
 
     /**
-     * @return       int
+     * @return       boolean 
      * @param        playerInformation
      */
-  public int addPlayer(Player playerInformation);
+  public boolean addPlayer(Player playerInformation);
 
     /**
      * @return       boolean
@@ -21,18 +21,17 @@ public interface DbWrapper {
      */
   public boolean removePlayer(UUID playerId);
   
-  /**
-   * 
-   * @param playerId
-   * @return
-   */
-  public List getPlayer(UUID playerId);
+    /**
+     * @return        Player 
+     * @param         playerId
+     */
+  public Player getPlayer(UUID playerId);
 
     /**
-     * @return       ServerSide.ServerGameMatch
+     * @return       boolean 
      * @param        playerInformation
      */
-  public List updatePlayer(Player playerInformation);
+  public boolean updatePlayer(Player playerInformation);
 
     /**
      * @return       boolean
@@ -41,10 +40,10 @@ public interface DbWrapper {
   public boolean banPlayer(Player playerInformation);
 
     /**
-     * @return       int
+     * @return       boolean 
      * @param        gameMatch
      */
-  public int createGameMatch(GameMatch gameMatch);
+  public boolean createGameMatch(GameMatch gameMatch);
 
     /**
      * @return       boolean
@@ -52,25 +51,21 @@ public interface DbWrapper {
      */
   public boolean removeGameMatch(int gameMatchId);
   
-  /**
-   * 
-   * @return list of game matches currently active.
-   */
-  public List getGameMatches();
-  
-  /**
-   * 
-   * @param gameMatchId
-   * @return
-   */
-  public List getGameMatch(int gameMatchId);
+    /**
+     * @return        boolean 
+     * @param         gameMatchId
+     */
+  public boolean getGameMatch(int gameMatchId);
 
+    /**
+     * @return       List   
+     */
+  public List getGameMatches();
 
     /**
      * @return       boolean
      * @param        playerEmail
      */
   public boolean unBanPlayer(String playerEmail);
-
 
 }
