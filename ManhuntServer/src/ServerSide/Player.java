@@ -14,11 +14,17 @@ class Player {
 	private UUID _id;
 	private int _type;
 	
-	//
-	// Constructor
-	//
-	
+	/**
+	 * new player
+	 */
 	public Player() {
+	};
+	
+	/**
+	 * if the player exist populate it iwth db data.
+	 * @param _id
+	 */
+	public Player(UUID _id) {
 	};
 
 	//
@@ -103,6 +109,10 @@ class Player {
 	 */
 	public void setType(int type) {
 		_type = type;
+	}
+	
+	public void syncPlayer() {
+		
 	}
 
 }
