@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-
 /**
  * Class ServerGameMatch
  */
@@ -15,20 +14,25 @@ public class GameMatch {
 	private int _id;
 	private boolean _active;
   
-    //
-    // Constructors
-    //
-  
+	/**
+	 * returns a newly created game match
+	 */
 	public GameMatch() {
 		if(_jdbc.getGameMatch(_id) == null){
 			_matchPlayers = new ArrayList<Player>();
 			_jdbc.createGameMatch(this); 
 		}
 	}
-
-    //
-    // Accessors and Mutators
-    //
+	
+	/**
+	 * returns a game match with db context
+	 * @param id, game match id
+	 */
+	public GameMatch(int id) {
+		_id = id;
+		_matchPlayers = new ArrayList<Player>();
+		List<String[]> tempGM =  _jdbc.getGameMatch(_id);
+	}
     
     /**
      * Set the value of matchPlayers
@@ -123,23 +127,18 @@ public class GameMatch {
      * @param        id
      */
   	public void removePlayer(int id){
-  		for(Player p : _matchPlayers){
-  			if (p.getId().equals(id)){
+  		for(Player p : _matchPlayers) {
+  			if (p.getId().equals(id)) {
   				_matchPlayers.remove(p);
   				_jdbc.removePlayer(p.getId());
-	  }
+  			}
+  		}
   	}
-
-//    /**
-//	   * *******WHATS THIS SUPPOSED TO DO?********
-//     * Gets list of all players in match
-//     * @return       List<Player>
-//     */
-//  	public List<Player> getPlayers(){
-//	  List<Player> players = new ArrayList<Player>(_matchPlayers);
-//	  return players;
-//  	}
-
-    
+  		
+  	/**
+  	 * Do all db syncing
+  	 */
+  	public void syncGameMatch() {
+  		
   	}
 }

@@ -7,7 +7,8 @@ public class ServiceRunnable implements Runnable {
 
 	private ServerSide.GameLogicController _gameLogicController;
 	public void run() {
-		this._gameLogicController = new ServerSide.GameLogicController();
+		JDBC dbCon = new JDBC();
+		this._gameLogicController = new ServerSide.GameLogicController(dbCon);
 		this._gameLogicController.start();
 	}
 

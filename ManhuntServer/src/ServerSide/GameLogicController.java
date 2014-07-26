@@ -1,6 +1,7 @@
 package ServerSide;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
@@ -19,7 +20,7 @@ public class GameLogicController {
 	private final int MAX_THREADS = 10;			// maximum thread number for pool
 	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
 
-	private volatile List<GameMatch> _gameMatchs;			// list of game matches
+	private volatile List<GameMatch> _gameMatches;			// list of game matches
 	private ServerSide.DbWrapper _dbWrapper;	// db class
 	
 	// web service and threading
@@ -38,9 +39,32 @@ public class GameLogicController {
 	 * 
 	 */
 	public GameLogicController(ServerSide.DbWrapper dbCon) {
-		_gameMatchs = new ArrayList<GameMatch>();
+		_gameMatches = new ArrayList<GameMatch>();
 		_dbWrapper = dbCon;
+		
+		// sync the instances objects with DB.
+		initSyncDb();
 	};
+	
+	/**
+	 * initial syncing of the game matches and databases.
+	 */
+	private void initSyncDb() {
+		List tempGames = _dbWrapper.getGameMatches();
+		
+		for(Iterator i = tempGames.iterator(); i.hasNext();) {
+			GameMatch gm = new GameMatch(Integer.parseInt(i.toString()));
+			_gameMatches.add(gm);
+		}
+	}
+	
+	/**
+	 * sync all game matches with the database
+	 */
+	private void syncDb() {
+		for(GameMatch gm: _gameMatches)
+			gm.syncGameMatch();
+	}
 	
 	/**
 	 * Begin running server
@@ -71,7 +95,7 @@ public class GameLogicController {
 	 * @param gamematch the new value added to gameMatchs
 	 */
 	private void setGameMatch(GameMatch gameMatch) {
-		_gameMatchs.add(gameMatch);
+		_gameMatches.add(gameMatch);
 	}
 
 	/**
@@ -79,9 +103,12 @@ public class GameLogicController {
 	 * @return the value of gameMatch
 	 */
 	private List<GameMatch> getGameMatch() {
-		return _gameMatchs;
+		return _gameMatches;
 	}
 	
+	/**
+	 * Main loop for decision making and event handling.
+	 */
 	private void loop() {
 		System.out.println("Listening for actionables...");
 		while(_active) {
@@ -94,7 +121,7 @@ public class GameLogicController {
 				while(!_wsSignaller.tryAcquire()) { }
 				
 				// pass message to handler (has hard coded game match!!!)
-				Runnable mesgHandler = new MessageHandler(_webService.messageQueue.peek(), _mhSignaller, _gameMatchs.get(0));
+				Runnable mesgHandler = new MessageHandler(_webService.messageQueue.peek(), _mhSignaller, _gameMatches.get(0));
 				
 				// spawn handler if allowed
 				_executor.execute(mesgHandler);
