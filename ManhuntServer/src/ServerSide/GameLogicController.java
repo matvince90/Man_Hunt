@@ -9,6 +9,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.Semaphore;
 
+import com.google.gson.Gson;
+
 /**
  * Class GameLogicController
  */
@@ -200,13 +202,25 @@ public class GameLogicController {
 		 */
 		private Player parsePlayer() {
 			Player player = new Player();
-			String[] arr = _msg.data.split(":");
-			player.setId(UUID.fromString(arr[1]));
-			player.setEmail(arr[2]);
-			player.setLatitude(Long.getLong(arr[3]));
-			player.setLongitude(Long.getLong(arr[4]));
-			player.setType(Integer.parseInt(arr[5]));
+			
+			// deserialize message contents
+			Gson gson = new Gson();
+			jSonPlayer jsonPlayer = gson.fromJson(_msg.data, jSonPlayer.class);
+
+			player.setId(jsonPlayer.id);
+			player.setEmail(jsonPlayer.email);
+			player.setLatitude(jsonPlayer.latitude);
+			player.setLongitude(jsonPlayer.longitude);
+			player.setType(jsonPlayer.status);
 			return player;
+		}
+		
+		private class jSonPlayer {
+			public int id;
+			public float latitude;
+			public float longitude;
+			public int status;
+			public String email;
 		}
 		
 	}
