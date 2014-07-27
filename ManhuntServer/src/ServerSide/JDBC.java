@@ -1,4 +1,4 @@
-//package ServerSide;
+package ServerSide;
 
 import java.util.*;
 import java.sql.*;
@@ -33,21 +33,21 @@ class JDBC implements DbWrapper {
     }
 
     @Override
-    public boolean getPlayer(UUID playerId) {
+    public Player getPlayer(UUID playerId) {
     
         try {
 
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return false;
+            return null;
         }
 
-        return true;
+        return null;
     }
 
     @Override
-	public int addPlayer(Player playerInformation) {
+	public boolean addPlayer(Player playerInformation) {
        
         try {
             st = _dbConnection.createStatement();
@@ -61,10 +61,10 @@ class JDBC implements DbWrapper {
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return -1; 
+            return false; 
         }
 
-		return 0;
+		return true;
 	}
 
     @Override
@@ -89,16 +89,17 @@ class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("UPDATE Player " +
-                             "SET email=" + playerInformation.getEmail + ", " +
-                             "SET latitude=" + playerInformation.getLatitude + ", " + 
-                             "SET longitude=" + playerInformation.getLongitude + ", " + 
-                             "SET status=" + playerInformation.getStatus + 
-                             "WHERE pid=" + playerInformation.getId);
+                             "SET email=" + playerInformation.getEmail() + ", " +
+                             "SET latitude=" + playerInformation.getLatitude() + ", " + 
+                             "SET longitude=" + playerInformation.getLongitude() + ", " + 
+                             "SET status=" + playerInformation.getType() + 
+                             "WHERE pid=" + playerInformation.getId());
             st.close();
-            catch (SQLException e) {
-                e.printStackTrace();
-                return false;
-            }
+        }
+        catch (SQLException e) {
+        	e.printStackTrace();
+        	return false;
+        }
 
 		return true;
 	}
@@ -109,8 +110,8 @@ class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("INSERT INTO BanList VALUES ('" +
-                             "playerInformation.getId() + "')");
-            st.close()
+                              playerInformation.getId() + "')");
+            st.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -129,7 +130,7 @@ class JDBC implements DbWrapper {
     @Override
 	public boolean createGameMatch(GameMatch gameMatch) {
 		// TODO Auto-generated method stub
-		return 0;
+		return false;
 	}
 
     @Override
@@ -141,7 +142,24 @@ class JDBC implements DbWrapper {
 	@Override
 	public boolean getGameMatch(int gameMatchId) {
 		// TODO Auto-generated method stub
-		return null;
+		return false;
 	}
-  
+	
+	@Override
+	public int getHighestMatchID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int getHighestPlayerID() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public List getGameMatches() {
+		// TODO Auto-generated method stub
+		return null;
+	}  
 }
