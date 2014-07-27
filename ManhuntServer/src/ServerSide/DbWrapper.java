@@ -1,8 +1,6 @@
 //package ServerSide;
 
 import java.util.List;
-import java.util.UUID;
-
 
 /**
  * Class DbWrapper
@@ -10,22 +8,16 @@ import java.util.UUID;
 public interface DbWrapper {
 
     /**
-     * @return       boolean 
-     * @param        playerInformation
-     */
-  public boolean addPlayer(Player playerInformation);
-
-    /**
-     * @return       boolean
-     * @param        playerId
-     */
-  public boolean removePlayer(UUID playerId);
-  
-    /**
      * @return        Player 
      * @param         playerId
      */
-  public Player getPlayer(UUID playerId);
+  public List<String> getPlayer(int playerId);
+
+    /**
+     * @return       boolean 
+     * @param        playerInformation
+     */
+  public int addPlayer(Player playerInformation);
 
     /**
      * @return       boolean 
@@ -35,37 +27,43 @@ public interface DbWrapper {
 
     /**
      * @return       boolean
+     * @param        playerId
+     */
+  public boolean removePlayer(int playerId);
+    
+    /**
+     * @return       boolean
      * @param        playerInformation
      */
   public boolean banPlayer(Player playerInformation);
 
     /**
+     * @return       boolean
+     * @param        playerEmail
+     */
+  public boolean unBanPlayer(int playerId);
+
+    /**
+     * @return        boolean 
+     * @param         gameMatchId
+     */
+  public List<String> getGameMatch(int gameMatchId);
+
+    /**
      * @return       boolean 
      * @param        gameMatch
      */
-  public boolean createGameMatch(GameMatch gameMatch);
+  public int createGameMatch(GameMatch gameMatch);
 
     /**
      * @return       boolean
      * @param        gameMatchId
      */
   public boolean removeGameMatch(int gameMatchId);
-  
-    /**
-     * @return        boolean 
-     * @param         gameMatchId
-     */
-  public boolean getGameMatch(int gameMatchId);
-
+    
     /**
      * @return       List   
      */
-  public List getGameMatches();
-
-    /**
-     * @return       boolean
-     * @param        playerEmail
-     */
-  public boolean unBanPlayer(String playerEmail);
-
+  public List<int> getGameMatches();
+    
 }

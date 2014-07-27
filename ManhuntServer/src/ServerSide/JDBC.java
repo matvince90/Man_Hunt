@@ -1,4 +1,4 @@
-package ServerSide;
+//package ServerSide;
 
 import java.util.*;
 import java.sql.*;
@@ -11,6 +11,7 @@ class JDBC implements DbWrapper {
     // Fields
     private Connection _dbConnection;
     private Statement st;
+    private ResultSet rs;
   
     // Constructors
     public JDBC () { 
@@ -33,46 +34,71 @@ class JDBC implements DbWrapper {
     }
 
     @Override
-    public Player getPlayer(UUID playerId) {
-    
-        try {
+    public List<String> getPlayer(int playerId) {
+   
+        List<String> playerData = new List<String>();
 
+        try {
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT email, latitude, longitude, type " +
+                                           "FROM Players " + 
+                                           "WHERE Players.pid=" + playerId);
+
+            while(rs.next()) {
+                playerData.add(rs.getString("pid"));
+                playerData.add(rs.getString("email"));
+                playerData.add(rs.getString("latitude"));
+                playerData.add(rs.getString("longitude"));
+                playerData.add(rs.getString("type"));
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
 
-        return null;
+        return playerData;
     }
 
     @Override
-	public boolean addPlayer(Player playerInformation) {
-       
+	public int addPlayer(Player playerInformation) {
+      
+        int pid = 0;
+
         try {
             st = _dbConnection.createStatement();
-            st.executeUpdate("INSERT INTO Player VALUES ('" + 
-                    playerInformation.getId() + "','" + 
+            st.executeUpdate("INSERT INTO Player " + 
+                    "(email, latitude, longitude, status) VALUES ('" + 
                     playerInformation.getEmail() + "','" +
                     playerInformation.getLatitude() + "','" +
                     playerInformation.getLongitude() + "','" +
                     playerInformation.getType() + "')");
+
             st.close();
+
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT pid FROM Players WHERE Players.email=" +
+                            playerInformation.getEmail());
+
+            while(rs.next()) {
+                pid = rs.getInt("pid");
+            }
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return false; 
+            return pid; 
         }
 
-		return true;
+		return pid;
 	}
 
     @Override
-	public boolean removePlayer(UUID playerId) {
+	public boolean removePlayer(int playerId) {
 	
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("DELETE FROM Player WHERE pid=" + playerId);
+
             st.close();
         }
         catch (SQLException e) {
@@ -80,7 +106,7 @@ class JDBC implements DbWrapper {
             return false;
         }
 
-		return false;
+		return true;
 	}
 
     @Override
@@ -92,13 +118,14 @@ class JDBC implements DbWrapper {
                              "SET email=" + playerInformation.getEmail() + ", " +
                              "SET latitude=" + playerInformation.getLatitude() + ", " + 
                              "SET longitude=" + playerInformation.getLongitude() + ", " + 
-                             "SET status=" + playerInformation.getType() + 
+                             "SET status=" + playerInformation.getStatus() + 
                              "WHERE pid=" + playerInformation.getId());
+
             st.close();
         }
         catch (SQLException e) {
-        	e.printStackTrace();
-        	return false;
+                e.printStackTrace();
+                return false;
         }
 
 		return true;
@@ -110,7 +137,12 @@ class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("INSERT INTO BanList VALUES ('" +
-                              playerInformation.getId() + "')");
+                             playerInformation.getId() + "','" +
+                             playerInformation.getEmail() + "','" +
+                             playerInformation.getLatitude() + "','" +
+                             playerInformation.getLongitude() + "','" +
+                             playerInformation.getStatus() + "')");
+    
             st.close();
         }
         catch (SQLException e) {
@@ -122,15 +154,31 @@ class JDBC implements DbWrapper {
 	}
 
     @Override
-    public boolean unBanPlayer(String playerEmail) {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean unBanPlayer(int playerId) {
+	    
+        try {
+            st = _dbConnection.createStatement();
+            st.executeUpdate("DELETE FROM BanList WHERE pid=" + playerId);
+
+            st.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrack();
+            return false;
+        }
+
+		return true;
 	}
 
     @Override
-	public boolean createGameMatch(GameMatch gameMatch) {
+	public List<String> getGameMatch(int gameMatchId) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
+	}
+    @Override
+	public int createGameMatch(GameMatch gameMatch) {
+        // TODO 
+		return 0;
 	}
 
     @Override
@@ -139,27 +187,9 @@ class JDBC implements DbWrapper {
 		return false;
 	}
 
-	@Override
-	public boolean getGameMatch(int gameMatchId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-	@Override
-	public int getHighestMatchID() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getHighestPlayerID() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public List getGameMatches() {
-		// TODO Auto-generated method stub
-		return null;
-	}  
+    @Override
+    public List<int> getGameMatches() {
+        // TODO
+        return null;
+    }
 }
