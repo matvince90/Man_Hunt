@@ -7,7 +7,7 @@ import java.util.UUID;
  */
 class Player {
 
-	// 
+	private JDBC _jdbc;
 	private String _email;
 	private float _latitude;
 	private float _longitude;
@@ -18,18 +18,23 @@ class Player {
 	 * new player
 	 */
 	public Player() {
+		setId();
+		_jdbc.addPlayer(this);
 	};
 	
 	/**
-	 * if the player exist populate it iwth db data.
+	 * if the player exist populate it with db data.
 	 * @param _id
 	 */
-	public Player(UUID _id) {
-	};
-
-	//
-	// Accessors and Mutators
-	//
+	public Player(UUID id) {
+		if (_jdbc.getPlayer(id)) {
+			_email = _jdbc.getPlayer(id).getEmail();
+			_latitude = _jdbc.getPlayer(id).getLatitude();
+			_longitude = _jdbc.getPlayer(id).getLongitude();
+			_id = _jdbc.getPlayer(id).getId();
+			_type = _jdbc.getPlayer(id).getType();
+		}
+	}
 	
 	/**
 	 * Get the value of email
@@ -37,14 +42,6 @@ class Player {
 	 */
 	public String getEmail() {
 		return _email;
-	}
-	
-	/**
-	 * Set the value of email
-	 * @param email
-	 */
-	public void setEmail(String email) {
-		_email = email;
 	}
 	
 	/**
@@ -59,15 +56,17 @@ class Player {
 	 * Set the value of id
 	 * @param id
 	 */
-	public void setId(UUID id) {
-		_id = id;
+	public void setId() {
+		if (_id == null) {
+			_id = _jdbc.getHighestId() + 1;
+		}
 	}
 
 	/**
 	 * Get the value of latitude
 	 * @return float
 	 */
-	public float getlatititude() {
+	public float getLatitude() {
 		return _latitude;
 	}
 
@@ -109,10 +108,6 @@ class Player {
 	 */
 	public void setType(int type) {
 		_type = type;
-	}
-	
-	public void syncPlayer() {
-		
 	}
 
 }
