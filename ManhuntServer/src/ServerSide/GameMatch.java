@@ -18,20 +18,20 @@ public class GameMatch {
 	 * returns a newly created game match
 	 */
 	public GameMatch() {
-		if(_jdbc.getGameMatch(_id) == null){
-			_matchPlayers = new ArrayList<Player>();
-			_jdbc.createGameMatch(this); 
-		}
+		_matchPlayers = new ArrayList<Player>();
+		//_id = _jdbc.getHighestId() + 1;
+		_jdbc.createGameMatch(this);
 	}
-	
 	/**
 	 * returns a game match with db context
 	 * @param id, game match id
 	 */
 	public GameMatch(int id) {
-		_id = id;
-		_matchPlayers = new ArrayList<Player>();
-		List<String[]> tempGM =  _jdbc.getGameMatch(_id);
+		if(!_jdbc.getGameMatch(id)) {
+			_id = id;
+			_matchPlayers = new ArrayList<Player>();
+			_jdbc.createGameMatch(this);
+		}
 	}
     
     /**
@@ -39,7 +39,7 @@ public class GameMatch {
      * @param newVar the new value of matchPlayers
      */
     public void addMatchPlayer (Player player) {
-    	if(_jdbc.getPlayer(player.getId()) == null){
+    	if(!_jdbc.getPlayer(player.getId())){
     		_matchPlayers.add(player);
     	}
 	}
@@ -133,12 +133,5 @@ public class GameMatch {
   				_jdbc.removePlayer(p.getId());
   			}
   		}
-  	}
-  		
-  	/**
-  	 * Do all db syncing
-  	 */
-  	public void syncGameMatch() {
-  		
   	}
 }
