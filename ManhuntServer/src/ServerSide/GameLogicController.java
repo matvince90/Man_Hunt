@@ -20,8 +20,9 @@ public class GameLogicController {
 	private final int MAX_THREADS = 10;			// maximum thread number for pool
 	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
 
+	// volatile var
 	private volatile List<GameMatch> _gameMatches;			// list of game matches
-	private ServerSide.DbWrapper _dbWrapper;	// db class
+	private DbWrapper _dbWrapper;	// db class
 	
 	// web service and threading
 	private Webservice _webService;				// web service.
@@ -38,7 +39,7 @@ public class GameLogicController {
 	/**
 	 * 
 	 */
-	public GameLogicController(ServerSide.DbWrapper dbCon) {
+	public GameLogicController(DbWrapper dbCon) {
 		_gameMatches = new ArrayList<GameMatch>();
 		_dbWrapper = dbCon;
 		
@@ -151,14 +152,27 @@ public class GameLogicController {
 	 */
 	public class MessageHandler implements Runnable {
 		
+		// variables
 		private Webservice.WebserviceMessage _msg;
 		private Semaphore _gameMatchSignal;
 		private GameMatch _gameMatch;
 		
+		/**
+		 * 
+		 * @param mesg
+		 * @param gameMatchSignal
+		 * @param gameMatch
+		 */
 		public MessageHandler(Webservice.WebserviceMessage mesg, Semaphore gameMatchSignal, GameMatch gameMatch) {
 			_msg = mesg;
+			_gameMatchSignal = gameMatchSignal;
+			_gameMatch = gameMatch;
 		}
 		
+		
+		/**
+		 * 
+		 */
 		public void run() {
 			switch(_msg.action) {
 				case "Update":
@@ -169,13 +183,21 @@ public class GameLogicController {
 			}
 		}
 		
-		// blocking code.
+		/**
+		 * 
+		 * @param player
+		 */
 		private void updatePlayer(Player player) {
+			// blocking code for this thread pool
 			while(_gameMatchSignal.tryAcquire());
 			_gameMatch.updateMatchPlayer(player);
 			_gameMatchSignal.release();
 		}
 		
+		/**
+		 * 
+		 * @return
+		 */
 		private Player parsePlayer() {
 			Player player = new Player();
 			String[] arr = _msg.data.split(":");

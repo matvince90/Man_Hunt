@@ -47,10 +47,13 @@ public class Webservice implements Runnable {
 	@Path(value = "/update")
 	public void handleRequest(@PathParam(value = "action") String action,
 			@PathParam(value = "data") String data) {
+		
+		// create a message
 		WebserviceMessage mesg = new WebserviceMessage();
 		mesg.id = UUID.randomUUID(); // collisions start after 2^29.
 		mesg.data = data;
 		mesg.action = action;
+		
 		// this section needs another runnable class to handle so that we don't block the web service listener
 		while(!_signalController.tryAcquire())
 			this.messageQueue.add(mesg);
