@@ -8,6 +8,8 @@ import java.util.concurrent.Semaphore;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 /**
  * Class Webservice
@@ -45,7 +47,8 @@ public class Webservice implements Runnable {
 	 */
 	@POST
 	@Path(value = "/update")
-	public void handleRequest(@PathParam(value = "action") String action,
+	@Produces("application/json")
+	public Response handleRequest(@PathParam(value = "action") String action,
 			@PathParam(value = "data") String data) {
 		
 		// create a message
@@ -60,6 +63,8 @@ public class Webservice implements Runnable {
 		_signalController.release();
 		_signalController.notify();
 		// end of code that needs new class.
+		
+		return null; // need to add a wait semaphore to this.
 	}
 
 

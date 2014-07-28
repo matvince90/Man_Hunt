@@ -6,3 +6,6 @@
 */BuildConfig*
 
 
+/SanityCheck/HelloWorldWebService/nbproject/private/
+/SanityCheck/HelloWorldWebService/build/
+/SanityCheck/HelloWorldWebService/dist/
