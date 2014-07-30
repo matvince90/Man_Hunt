@@ -1,0 +1,148 @@
+Jul 30, 2014 1:40:08 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Jul 30, 2014 1:40:08 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Jul 30, 2014 1:40:10 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Jul 30, 2014 1:40:10 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8080"]
+Jul 30, 2014 1:40:10 PM org.apache.coyote.AbstractProtocol init
+SEVERE: Failed to initialize end point associated with ProtocolHandler ["http-apr-8080"]
+java.lang.Exception: Socket bind failed: [730048] Only one usage of each socket address (protocol/network address/port) is normally permitted.  
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:431)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:646)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:434)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:559)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:821)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:638)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:663)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:280)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:454)
+
+Jul 30, 2014 1:40:10 PM org.apache.catalina.core.StandardService initInternal
+SEVERE: Failed to initialize connector [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Failed to initialize component [Connector[HTTP/1.1-8080]]
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:106)
+	at org.apache.catalina.core.StandardService.initInternal(StandardService.java:559)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.core.StandardServer.initInternal(StandardServer.java:821)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:638)
+	at org.apache.catalina.startup.Catalina.load(Catalina.java:663)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.apache.catalina.startup.Bootstrap.load(Bootstrap.java:280)
+	at org.apache.catalina.startup.Bootstrap.main(Bootstrap.java:454)
+Caused by: org.apache.catalina.LifecycleException: Protocol handler initialization failed
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:980)
+	at org.apache.catalina.util.LifecycleBase.init(LifecycleBase.java:102)
+	... 12 more
+Caused by: java.lang.Exception: Socket bind failed: [730048] Only one usage of each socket address (protocol/network address/port) is normally permitted.  
+	at org.apache.tomcat.util.net.AprEndpoint.bind(AprEndpoint.java:431)
+	at org.apache.tomcat.util.net.AbstractEndpoint.init(AbstractEndpoint.java:646)
+	at org.apache.coyote.AbstractProtocol.init(AbstractProtocol.java:434)
+	at org.apache.catalina.connector.Connector.initInternal(Connector.java:978)
+	... 13 more
+
+Jul 30, 2014 1:40:10 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:40:10 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 2513 ms
+Jul 30, 2014 1:40:10 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Jul 30, 2014 1:40:10 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Jul 30, 2014 1:40:10 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Jul 30, 2014 1:40:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 1,339 ms
+Jul 30, 2014 1:40:11 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Jul 30, 2014 1:40:13 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 1,958 ms
+Jul 30, 2014 1:40:13 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Jul 30, 2014 1:40:13 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 146 ms
+Jul 30, 2014 1:40:13 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Jul 30, 2014 1:40:14 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 197 ms
+Jul 30, 2014 1:40:14 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Jul 30, 2014 1:40:14 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 161 ms
+Jul 30, 2014 1:40:14 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:40:14 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 3942 ms
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-apr-8080"]
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:40:56 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-apr-8080"]
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-apr-8080"]
+Jul 30, 2014 1:40:56 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:41:50 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Jul 30, 2014 1:41:50 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Jul 30, 2014 1:41:52 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Jul 30, 2014 1:41:52 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8081"]
+Jul 30, 2014 1:41:52 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:41:52 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 2413 ms
+Jul 30, 2014 1:41:52 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Jul 30, 2014 1:41:52 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Jul 30, 2014 1:41:52 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Jul 30, 2014 1:41:53 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 1,149 ms
+Jul 30, 2014 1:41:53 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 1,255 ms
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 132 ms
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 158 ms
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 184 ms
+Jul 30, 2014 1:41:55 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8081"]
+Jul 30, 2014 1:41:55 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Jul 30, 2014 1:41:55 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 3016 ms
+Jul 30, 2014 1:42:35 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Jul 30, 2014 1:42:40 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive C:\Users\japhill\Documents\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 4,690 ms

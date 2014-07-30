@@ -14,12 +14,12 @@ import java.util.concurrent.Semaphore;
 public class GameLogicController {
 
 	// constants
-	private final int MAX_PLAYERS = 50;			// max players per instance.
-	private final int MAX_GAME_INSTANCES = 1;	// maximum number of instances.
-	private final int MAX_THREADS = 10;			// maximum thread number for pool
-	private final int SEMAPHORE_PERMITS = 1;	// max semaphore permits.
+	private final int MAX_PLAYERS = 50;				// max players per instance.
+	private final int MAX_GAME_INSTANCES = 1;		// maximum number of instances.
+	private final int MAX_THREADS = 10;				// maximum thread number for pool
+	private final int SEMAPHORE_PERMITS = 1;		// max semaphore permits.
 
-	private volatile List<GameMatch> _gameMatchs;			// list of game matches
+	private volatile List<GameMatch> _gameMatchs;	// list of game matches
 	private ServerSide.DbWrapper _dbWrapper;		// db class
 	
 	// web service and threading
@@ -32,7 +32,7 @@ public class GameLogicController {
 	
 	//
 	private boolean _active = false;
-	private ExecutorService _executor;			// thread pool
+	private ExecutorService _executor;				// thread pool
 
 	/**
 	 * 
