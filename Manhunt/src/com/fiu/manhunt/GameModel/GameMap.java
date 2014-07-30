@@ -1,32 +1,27 @@
 package com.fiu.manhunt.GameModel;
 
+import android.location.Location;
+
 
 /**
  * Class GameMap
  */
 public class GameMap {
-
-    //
+ 
+    /*
+     *List of players
+     *current player points and compare them to the predators and signal the controller regarding distances
+     *This deals with the logic behind the map, not the map itself.  
+     */
+	
     // Fields
     //
 
   private uiGameMap uiGameMap;
   private float[] gameBoundaries;
-  
-    //
-    // Constructors
-    //
-    public GameMap () { };
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
+   
+  public GameMap () { };
+   
     /**
      * Set the value of uiGameMap
      * @param newVar the new value of uiGameMap

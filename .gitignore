@@ -6,3 +6,12 @@
 */BuildConfig*
 
 
+/SanityCheck/HelloWorldWebService/nbproject/private/
+/SanityCheck/HelloWorldWebService/build/
+/SanityCheck/HelloWorldWebService/dist/
+/SanityCheck/WebApplication1/nbproject/private/
+/SanityCheck/WebApplication1/build/
+/SanityCheck/WebApplication1/dist/
+/ManhuntServerSide/ServerSide/nbproject/private/
+/ManhuntServerSide/ServerSide/build/
+/ManhuntServerSide/ServerSide/dist/

@@ -109,7 +109,7 @@ public class Player {
      * Set the value of location
      * @param newVar the new value of location
      */
-  private void setLocation(Location newVar) {
+  public void setLocation(Location newVar) {
       location = newVar;
   }
  
@@ -150,5 +150,13 @@ public class Player {
   public void cleanPowerUps()
   {
 	  this.powerUpInventory.clear();
-  } 
+  }
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	} 
 }

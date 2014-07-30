@@ -1,4 +1,4 @@
-package GameInteraction;
+package com.fiu.manhunt.GameInteraction;
 import GameModel.Singleton_T_;
 
 
