@@ -1,13 +1,80 @@
 package com.fiu.manhunt.test.driver;
 
-public class TestDriver {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.Random;
 
+import com.fiu.manhunt.server.PlayerMessageData;
+import com.fiu.manhunt.test.modules.ControllerTest;
+import com.google.gson.Gson;
+
+public class TestDriver {
+	private static final int NUM_TESTS = 25;
+	private static Random _rnd;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		_rnd = new Random();
+		_rnd.setSeed(0);
+		
+		try {
+		TestController();
+		} catch(Exception E) {
+			System.out.println("Something major broke.");
+		}
+	}
+	
+	private static void TestController() throws FileNotFoundException, UnsupportedEncodingException {
+		ControllerTest ct = new ControllerTest();
+		
+		PrintWriter writer = createLog("ControllerTest");
+		
+		PlayerMessageData pmd = new PlayerMessageData();
+		PlayerMessageData.PlayerData pd = pmd.new PlayerData();
+		Gson gson = new Gson();
+		
+		
+		
+		for(int i = 0; i < NUM_TESTS; i++) {
+			// test within a range of four e-mails (this way we hit 4 new players and Num_test - 4 updates)
+			pd.set_email("test" + (i % 4) + "@somewhere.com");
+			
+			// random locations.
+			pd.set_lat((float)1.2234 * (float)getRandomRange(1, 25));
+			pd.set_long((float)1.2234 * (float)getRandomRange(5, 40));
+			
+			// expected input
+			String playerJsonData = gson.toJson(pd);
+			writer.println("\n--Test " + i + " input--\n");
+			writer.println(playerJsonData);
+			
+			// write out results
+			writer.println("\n--Test " + i + " output--\n");
+			writer.println(ct.TestPlayerUpdate(playerJsonData));
+		}
+		writer.close();
+	}
+	
+	// support functions
+	private static PrintWriter createLog(String prefix) throws FileNotFoundException, UnsupportedEncodingException {
+		int i = 0;
+		String fileName = null;
+		while(i >= 0 && i <= 100) {
+			File log = new File(prefix + "-"+ i++ +".txt");
+			if(!log.exists()) {
+				fileName = log.getName();
+				break;
+			}
+		}
+		PrintWriter writer = new PrintWriter(fileName, "UTF-8");
+		return writer;
+	}
+	
+	private static int getRandomRange(int min, int max) {
+		return (_rnd.nextInt((max - min) + 1) + min);
 	}
 
 }

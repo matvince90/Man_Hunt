@@ -1,6 +1,13 @@
 package com.fiu.manhunt.test.modules;
 
 import static org.junit.Assert.*;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 import org.junit.Test;
 
 import com.fiu.manhunt.server.GameLogicController;
