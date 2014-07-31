@@ -21,6 +21,7 @@ CREATE TABLE BanList          (pid         INTEGER NOT NULL,
 CREATE TABLE GameMatchPlayers (pid        INTEGER NOT NULL,
                                gid        INTEGER NOT NULL,
                                PRIMARY KEY (pid, gid),
-                               FOREIGN KEY (pid) REFERENCES Player,
+                               FOREIGN KEY (pid) REFERENCES Player
+                               ON DELETE CASCADE,
                                FOREIGN KEY (gid) REFERENCES GameMatch
                                ON DELETE CASCADE);
