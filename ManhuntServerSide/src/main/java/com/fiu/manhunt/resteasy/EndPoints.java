@@ -1,10 +1,8 @@
 package com.fiu.manhunt.resteasy;
 
-import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.FormParam;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import com.fiu.manhunt.server.GameLogicController;
@@ -14,7 +12,9 @@ import com.fiu.manhunt.server.PlayerMessageDataFactory;
 import com.google.gson.Gson;
 
 /**
- * 
+ * This endpoint set currently only has one endpoint, that is update and is exposed as {host}/manhunt/update
+ * update takes a playerdata localclass via playermessagedata and updates the controller with the new information, returning the state
+ * of the current game match from the database input and output is expected to be in JSON.
  * @author Team 3
  *
  */
@@ -22,7 +22,9 @@ import com.google.gson.Gson;
 public class EndPoints {
 
 	/**
-	 * 
+	 * This endpoint expects to receive POST data in JSON format that is equivalent to PlayerMEssageData.PlayerData
+	 * object. It will parse the JSON into the strongly typed object and update the controller with the new data
+	 * Finally, returning the games state as the response to the request.
 	 * @param playerJsonData
 	 * @return
 	 */

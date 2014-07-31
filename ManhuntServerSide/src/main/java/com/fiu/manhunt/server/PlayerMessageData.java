@@ -14,8 +14,8 @@ public class PlayerMessageData {
 		private int _playerId;
 		private String _email;
 		private int _type;
-		private long _lat;
-		private long _long;
+		private double _lat;
+		private double _long;
 		private int _match;
 		
 		/**
@@ -63,28 +63,28 @@ public class PlayerMessageData {
 		/**
 		 * @return
 		 */
-		public long get_lat() {
+		public double get_lat() {
 			return _lat;
 		}
 		
 		/**
 		 * @param _lat
 		 */
-		public void set_lat(long _lat) {
+		public void set_lat(double _lat) {
 			this._lat = _lat;
 		}
 		
 		/**
 		 * @return
 		 */
-		public long get_long() {
+		public double get_long() {
 			return _long;
 		}
 		
 		/**
 		 * @param _long
 		 */
-		public void set_long(long _long) {
+		public void set_long(double _long) {
 			this._long = _long;
 		}
 		
