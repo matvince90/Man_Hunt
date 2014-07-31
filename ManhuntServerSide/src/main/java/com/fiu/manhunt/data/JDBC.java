@@ -351,7 +351,6 @@ class JDBC implements DbWrapper {
         return allGameMatches;
     }
 
-    @Override
     public List<Integer> getAllGameMatchPlayers(int gameMatchId) {
 
         ArrayList<Integer> allPlayers = new ArrayList<Integer>();
