@@ -1,6 +1,9 @@
-//package ServerSide;
+package com.fiu.manhunt.data;
 
 import java.util.List;
+
+import com.fiu.manhunt.entities.GameMatch;
+import com.fiu.manhunt.entities.Player;
 
 /**
  * Class DbWrapper
@@ -64,6 +67,6 @@ public interface DbWrapper {
     /**
      * @return       List   
      */
-  public List<int> getGameMatches();
+  public List<Integer> getGameMatches();
     
 }

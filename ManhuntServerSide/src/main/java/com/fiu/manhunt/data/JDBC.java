@@ -1,7 +1,9 @@
-//package ServerSide;
+package com.fiu.manhunt.data;
 
 import java.util.*;
 import java.sql.*;
+
+import com.fiu.manhunt.entities.Player;
 
 /**
  * Class JDBC
