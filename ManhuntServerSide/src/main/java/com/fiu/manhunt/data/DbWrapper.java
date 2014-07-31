@@ -14,13 +14,19 @@ public interface DbWrapper {
      * @return        Player 
      * @param         playerId
      */
-  public List<String> getPlayer(int playerId);
+  public List<String> getPlayer(String email);
 
     /**
      * @return       boolean 
      * @param        playerInformation
      */
   public int addPlayer(Player playerInformation);
+
+    /**
+     * @return       boolean
+     * @param        pid, gid
+     */
+  public boolean addPlayerToGameMatch(int playerId, int gameMatchId);
 
     /**
      * @return       boolean 
@@ -38,13 +44,19 @@ public interface DbWrapper {
      * @return       boolean
      * @param        playerInformation
      */
-  public boolean banPlayer(Player playerInformation);
+  public boolean banPlayer(String email);
+
+    /**
+     * @return       boolean
+     * @param        pid
+     */
+  public boolean checkBanPlayer(String email);
 
     /**
      * @return       boolean
      * @param        playerEmail
      */
-  public boolean unBanPlayer(int playerId);
+  public boolean unBanPlayer(String email);
 
     /**
      * @return        boolean 
@@ -67,6 +79,12 @@ public interface DbWrapper {
     /**
      * @return       List   
      */
-  public List<Integer> getGameMatches();
+  public List<Integer> getAllGameMatches();
+
+    /**
+     * @return       List<Integer>
+     * @param        int
+     */
+//  public List<Integer> getAllGameMatchPlayers(int gameMatchId);
     
 }

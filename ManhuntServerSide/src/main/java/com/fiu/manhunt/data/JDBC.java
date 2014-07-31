@@ -4,11 +4,12 @@ import java.util.*;
 import java.sql.*;
 
 import com.fiu.manhunt.entities.Player;
+import com.fiu.manhunt.entities.GameMatch;
 
 /**
  * Class JDBC
  */
-public class JDBC implements DbWrapper {
+class JDBC implements DbWrapper {
 
     // Fields
     private Connection _dbConnection;
@@ -36,27 +37,48 @@ public class JDBC implements DbWrapper {
     }
 
     @Override
-    public List<String> getPlayer(int playerId) {
+    public List<String> getPlayer(String email) {
    
-        ArrayList<String> playerData = new ArrayList<String>();
+        ArrayList<String> playerData = null;
+        int playerId = 0;
 
         try {
             st = _dbConnection.createStatement();
             rs = st.executeQuery("SELECT * " +
-                                           "FROM Player " + 
-                                           "WHERE pid=" + playerId);
+                                 "FROM Player " + 
+                                 "WHERE email='" + email + "'");
+            
+            playerData = new ArrayList<String>();
 
             while(rs.next()) {
                 playerData.add(rs.getString("pid"));
+                playerId = rs.getInt("pid");
                 playerData.add(rs.getString("email"));
                 playerData.add(rs.getString("latitude"));
                 playerData.add(rs.getString("longitude"));
-                playerData.add(rs.getString("type"));
+                playerData.add(rs.getString("status"));
             }
+
+            rs.close();
+            st.close();
+
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT gid FROM GameMatchPlayers " +
+                                "WHERE pid=" + playerId);
+
+            if(rs.next()) {
+                playerData.add(rs.getString("gid"));
+            }
+            else {
+                playerData.add("0");
+            }
+
+            rs.close();
+            st.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            return playerData;
         }
 
         return playerData;
@@ -70,7 +92,7 @@ public class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("INSERT INTO Player " + 
-                    "(pid, email, latitude, longitude, type) VALUES (DEFAULT, '" + 
+                    "(pid, email, latitude, longitude, status) VALUES (DEFAULT, '" + 
                     playerInformation.getEmail() + "','" +
                     playerInformation.getLatitude() + "','" +
                     playerInformation.getLongitude() + "','" +
@@ -79,12 +101,14 @@ public class JDBC implements DbWrapper {
             st.close();
 
             st = _dbConnection.createStatement();
-            rs = st.executeQuery("SELECT pid FROM Player WHERE email='" +
-                            playerInformation.getEmail() + "'");
+            rs = st.executeQuery("SELECT currval('player_pid_seq')");
 
             while(rs.next()) {
-                pid = rs.getInt("pid");
+                pid = rs.getInt("currval");
             }
+
+            rs.close();
+            st.close();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -93,6 +117,25 @@ public class JDBC implements DbWrapper {
 
 		return pid;
 	}
+
+    @Override
+    public boolean addPlayerToGameMatch(int pid, int gid) {
+
+        try {
+            st = _dbConnection.createStatement();
+            st.executeUpdate("INSERT INTO gamematchplayers " +
+                             "(pid, gid) VALUES (" +
+                             pid + ", " + gid + ")");
+
+            st.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
 
     @Override
 	public boolean removePlayer(int playerId) {
@@ -120,7 +163,7 @@ public class JDBC implements DbWrapper {
                              "SET email='" + playerInformation.getEmail() + "', " +
                              "latitude=" + playerInformation.getLatitude() + ", " + 
                              "longitude=" + playerInformation.getLongitude() + ", " + 
-                             "type=" + playerInformation.getType() + 
+                             "status=" + playerInformation.getType() + 
                              "WHERE pid=" + playerInformation.getId());
 
             st.close();
@@ -134,34 +177,26 @@ public class JDBC implements DbWrapper {
 	}
 
     @Override
-	public boolean banPlayer(Player playerInformation) {
-        
+	public boolean banPlayer(String email) {
+       
+        int pid = 0;
+
         try {
             st = _dbConnection.createStatement();
-            st.executeUpdate("INSERT INTO BanList VALUES ('" +
-                             playerInformation.getId() + "','" +
-                             playerInformation.getEmail() + "','" +
-                             playerInformation.getLatitude() + "','" +
-                             playerInformation.getLongitude() + "','" +
-                             playerInformation.getType() + "')");
-    
+            rs = st.executeQuery("SELECT * FROM Player " +
+                                 "WHERE email='" + email + "'");
+
+            while(rs.next()) {
+                pid = rs.getInt("pid");
+            }
+
+            rs.close();
             st.close();
-        }
-        catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
 
-		return false;
-	}
-
-    @Override
-    public boolean unBanPlayer(int playerId) {
-	    
-        try {
             st = _dbConnection.createStatement();
-            st.executeUpdate("DELETE FROM BanList WHERE pid=" + playerId);
-
+            st.executeUpdate("INSERT INTO BanList VALUES (" +
+                             pid + ")"); 
+   
             st.close();
         }
         catch (SQLException e) {
@@ -173,15 +208,118 @@ public class JDBC implements DbWrapper {
 	}
 
     @Override
+    public boolean checkBanPlayer(String email) {
+
+        int playerId = 0;
+
+        try {
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT pid FROM Player " +
+                                 "WHERE email='" + email + "'");
+
+            while(rs.next()) {
+                playerId = rs.getInt("pid");
+            }
+
+            rs.close();
+            st.close();
+
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT * FROM BanList " +
+                                 "WHERE pid=" + playerId);
+
+            rs.close();
+            st.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean unBanPlayer(String email) {
+	  
+        int pid = 0;
+
+        try {
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT * FROM Player " +
+                                 "WHERE email='" + email + "'");
+
+            while(rs.next()) {
+                pid = rs.getInt("pid");
+            }
+
+            rs.close();
+            st.close();
+
+            st = _dbConnection.createStatement();
+            st.executeUpdate("DELETE FROM BanList WHERE pid=" + pid);
+
+            st.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+		return true;
+	}
+
+    @Override
 	public List<String> getGameMatch(int gameMatchId) {
-		// TODO Auto-generated method stub
-		return null;
+	
+        ArrayList<String>  gameMatchData = new ArrayList<String>();
+
+        try {
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT * " +
+                                 "FROM GameMatch " +
+                                 "WHERE gid=" + gameMatchId);
+
+            while(rs.next()) {
+                gameMatchData.add(rs.getString("gid"));
+                gameMatchData.add(rs.getString("startTime"));
+                gameMatchData.add(rs.getString("active"));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+                
+		return gameMatchData;
 	}
 
     @Override
 	public int createGameMatch(GameMatch gameMatch) {
-        // TODO 
-		return 0;
+       
+        int gid = 0;
+
+        try {
+            st = _dbConnection.createStatement();
+            st.executeUpdate("INSERT INTO GameMatch " + 
+                             "(gid, starttime, active) VALUES (DEFAULT, '" +
+                             gameMatch.getStartTimestamp() + "'," +
+                             gameMatch.isActive() + ")");
+
+            st.close();
+
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT currval('gamematch_gid_seq')");
+
+            while(rs.next()) {
+                gid = rs.getInt("currval");
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return gid;
+        }
+
+		return gid;
 	}
 
     @Override
@@ -191,7 +329,7 @@ public class JDBC implements DbWrapper {
 	}
 
     @Override
-    public List<Integer> getGameMatches() {
+    public List<Integer> getAllGameMatches() {
         // TODO
         return null;
     }
