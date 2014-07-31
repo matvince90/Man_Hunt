@@ -4,6 +4,7 @@
 */org.eclipse.jdt.core.prefs
 */appcompat/R*
 */BuildConfig*
+./metadata/*
 
 
 /SanityCheck/HelloWorldWebService/nbproject/private/
