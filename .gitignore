@@ -1,10 +1,10 @@
+.metadata/
 */bin
 *.stackdump
 */.classpath
 */org.eclipse.jdt.core.prefs
 */appcompat/R*
 */BuildConfig*
-./metadata/*
 
 
 /SanityCheck/HelloWorldWebService/nbproject/private/
@@ -16,4 +16,3 @@
 /ManhuntServerSide/ServerSide/nbproject/private/
 /ManhuntServerSide/ServerSide/build/
 /ManhuntServerSide/ServerSide/dist/
-.metadata/

@@ -12,7 +12,6 @@ import com.fiu.manhunt.server.PlayerMessageData;
 import com.fiu.manhunt.server.PlayerMessageDataFactory;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 /**
  * 
