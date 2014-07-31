@@ -71,7 +71,7 @@ public class GameLogicController {
 		if(gm.getId() >= 0) {
 			
 			// attempt to get the player by email
-			Player player = new Player(playerData.get_email());
+			Player player = new Player(playerData.get_email(), _dbWrapper);
 			
 			// either way set the update variables
 			player.setLatitude(playerData.get_lat());
