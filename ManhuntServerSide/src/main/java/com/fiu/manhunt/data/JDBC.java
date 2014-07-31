@@ -9,7 +9,7 @@ import com.fiu.manhunt.entities.GameMatch;
 /**
  * Class JDBC
  */
-public class JDBC implements DbWrapper {
+class JDBC implements DbWrapper {
 
     // Fields
     private Connection _dbConnection;
@@ -36,7 +36,6 @@ public class JDBC implements DbWrapper {
         }
     }
 
-    
     public List<String> getPlayer(String email) {
    
         ArrayList<String> playerData = null;
@@ -84,7 +83,6 @@ public class JDBC implements DbWrapper {
         return playerData;
     }
 
-    
 	public int addPlayer(Player playerInformation) {
       
         int pid = 0;
@@ -118,7 +116,6 @@ public class JDBC implements DbWrapper {
 		return pid;
 	}
 
-    
     public boolean addPlayerToGameMatch(int pid, int gid) {
 
         try {
@@ -137,7 +134,6 @@ public class JDBC implements DbWrapper {
         return true;
     }
 
-    
 	public boolean removePlayer(int playerId) {
 	
         try {
@@ -154,7 +150,6 @@ public class JDBC implements DbWrapper {
 		return true;
 	}
 
-    
 	public boolean updatePlayer(Player playerInformation) {
 	
         try {
@@ -176,7 +171,6 @@ public class JDBC implements DbWrapper {
 		return true;
 	}
 
-    
 	public boolean banPlayer(String email) {
        
         int pid = 0;
@@ -207,7 +201,6 @@ public class JDBC implements DbWrapper {
 		return true;
 	}
 
-    
     public boolean checkBanPlayer(String email) {
 
         int playerId = 0;
@@ -239,7 +232,6 @@ public class JDBC implements DbWrapper {
         return true;
     }
 
-    
     public boolean unBanPlayer(String email) {
 	  
         int pid = 0;
@@ -268,7 +260,6 @@ public class JDBC implements DbWrapper {
 		return true;
 	}
 
-    
 	public List<String> getGameMatch(int gameMatchId) {
 	
         ArrayList<String>  gameMatchData = new ArrayList<String>();
@@ -293,7 +284,6 @@ public class JDBC implements DbWrapper {
 		return gameMatchData;
 	}
 
-    
 	public int createGameMatch(GameMatch gameMatch) {
        
         int gid = 0;
@@ -322,7 +312,6 @@ public class JDBC implements DbWrapper {
 		return gid;
 	}
 
-    
 	public boolean removeGameMatch(int gameMatchId) {
 
         try {
@@ -339,7 +328,6 @@ public class JDBC implements DbWrapper {
 		return true;
 	}
 
-    
     public List<Integer> getAllGameMatches() {
         
         ArrayList<Integer> allGameMatches = new ArrayList<Integer>();
@@ -363,9 +351,28 @@ public class JDBC implements DbWrapper {
         return allGameMatches;
     }
 
-    
+    @Override
     public List<Integer> getAllGameMatchPlayers(int gameMatchId) {
 
-        return null;
+        ArrayList<Integer> allPlayers = new ArrayList<Integer>();
+
+        try {
+            st = _dbConnection.createStatement();
+            rs = st.executeQuery("SELECT pid FROM GameMatchPlayers " + 
+                                 "WHERE gid=" + gameMatchId);
+
+            while(rs.next()) {
+                allPlayers.add(rs.getInt("pid"));
+            }
+
+            rs.close();
+            st.close();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return allPlayers;
     }
 }
