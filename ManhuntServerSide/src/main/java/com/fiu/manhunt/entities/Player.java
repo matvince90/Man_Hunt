@@ -22,7 +22,6 @@ public class Player {
 	 */
 	public Player(DbWrapper db) {
 		_dbCon = db;
-		setId();
 		_dbCon.addPlayer(this);
 	};
 	
@@ -62,10 +61,8 @@ public class Player {
 	 * Set the value of id
 	 * @param id
 	 */
-	public void setId() {
-		if (_id < 0) {
-			_id = _dbCon.getHighestId() + 1;
-		}
+	private void setId(int id) {
+		_id = id;
 	}
 
 	/**

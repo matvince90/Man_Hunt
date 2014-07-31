@@ -9,7 +9,7 @@ import com.fiu.manhunt.entities.GameMatch;
 /**
  * Class JDBC
  */
-class JDBC implements DbWrapper {
+public class JDBC implements DbWrapper {
 
     // Fields
     private Connection _dbConnection;
