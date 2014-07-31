@@ -47,7 +47,7 @@ public class GameLogicController {
 	 * 
 	 */
 	private void initStateSetup() {
-		List<Integer> gameMatchIds =  _dbWrapper.getGameMatches();
+		List<Integer> gameMatchIds =  _dbWrapper.getAllGameMatches();
 		for(int id: gameMatchIds)
 			_gameMatches.add(new GameMatch(id));
 		
@@ -83,7 +83,7 @@ public class GameLogicController {
 				gm.updateMatchPlayer(player);
 			} else {
 				player.set_email(playerData.get_email());
-				gm.addPlayer(player);
+				gm.addMatchPlayer(player);
 			}
 			
 			// get the list of players in the current match.
