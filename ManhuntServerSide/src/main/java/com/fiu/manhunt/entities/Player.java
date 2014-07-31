@@ -29,8 +29,8 @@ public class Player {
 	 * if the player exist populate it with db data.
 	 * @param _id
 	 */
-	public Player(int id) {
-		if (_dbCon.getPlayer(id)) {
+	public Player(String email) {
+		if (_dbCon.getPlayer(email)) {
 			_email = _dbCon.getPlayer(id).getEmail();
 			_latitude = _dbCon.getPlayer(id).getLatitude();
 			_longitude = _dbCon.getPlayer(id).getLongitude();
