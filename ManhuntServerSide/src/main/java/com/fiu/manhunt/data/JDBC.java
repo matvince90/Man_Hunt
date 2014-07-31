@@ -9,7 +9,7 @@ import com.fiu.manhunt.entities.GameMatch;
 /**
  * Class JDBC
  */
-class JDBC implements DbWrapper {
+public class JDBC implements DbWrapper {
 
     // Fields
     private Connection _dbConnection;
@@ -36,7 +36,6 @@ class JDBC implements DbWrapper {
         }
     }
 
-    @Override
     public List<String> getPlayer(String email) {
    
         ArrayList<String> playerData = null;
@@ -84,7 +83,6 @@ class JDBC implements DbWrapper {
         return playerData;
     }
 
-    @Override
 	public int addPlayer(Player playerInformation) {
       
         int pid = 0;
@@ -118,7 +116,7 @@ class JDBC implements DbWrapper {
 		return pid;
 	}
 
-    @Override
+
     public boolean addPlayerToGameMatch(int pid, int gid) {
 
         try {
@@ -137,7 +135,7 @@ class JDBC implements DbWrapper {
         return true;
     }
 
-    @Override
+
 	public boolean removePlayer(int playerId) {
 	
         try {
@@ -154,7 +152,7 @@ class JDBC implements DbWrapper {
 		return true;
 	}
 
-    @Override
+
 	public boolean updatePlayer(Player playerInformation) {
 	
         try {
@@ -176,7 +174,7 @@ class JDBC implements DbWrapper {
 		return true;
 	}
 
-    @Override
+
 	public boolean banPlayer(String email) {
        
         int pid = 0;
@@ -207,7 +205,7 @@ class JDBC implements DbWrapper {
 		return true;
 	}
 
-    @Override
+
     public boolean checkBanPlayer(String email) {
 
         int playerId = 0;
@@ -239,7 +237,7 @@ class JDBC implements DbWrapper {
         return true;
     }
 
-    @Override
+
     public boolean unBanPlayer(String email) {
 	  
         int pid = 0;
@@ -268,7 +266,7 @@ class JDBC implements DbWrapper {
 		return true;
 	}
 
-    @Override
+
 	public List<String> getGameMatch(int gameMatchId) {
 	
         ArrayList<String>  gameMatchData = new ArrayList<String>();
@@ -293,7 +291,7 @@ class JDBC implements DbWrapper {
 		return gameMatchData;
 	}
 
-    @Override
+
 	public int createGameMatch(GameMatch gameMatch) {
        
         int gid = 0;
@@ -322,13 +320,13 @@ class JDBC implements DbWrapper {
 		return gid;
 	}
 
-    @Override
+
 	public boolean removeGameMatch(int gameMatchId) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-    @Override
+
     public List<Integer> getAllGameMatches() {
         // TODO
         return null;
