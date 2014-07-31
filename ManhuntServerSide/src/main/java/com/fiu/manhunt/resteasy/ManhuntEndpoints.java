@@ -7,12 +7,12 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
-@Path("/manhunt")
-public class RESTEasyHelloWorldService {
+@Path("/RESTEasyHelloWorld")
+public class ManhuntEndpoints {
 
 	@GET
-	@Path("/update")
-	public Response responseMsg( @PathParam("pathParameter") String pathParameter, 
+	@Path("/{pathParameter}")
+	public Response responseMsg( @PathParam("pathParameter") String pathParameter,
 			@DefaultValue("Nothing to say") @QueryParam("queryParameter") String queryParameter) {
 		// exposed at http://localhost:8081/ManhuntServerSide/rest/RESTEasyHelloWorld/JavaCodeGeeks?=029394
 		String response = "Hello from: " + pathParameter + " : " + queryParameter;
