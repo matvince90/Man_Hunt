@@ -15,6 +15,7 @@ public class Player {
 	private float _longitude;
 	private UUID _id;
 	private int _type;
+	private int _match;
 	
 	/**
 	 * new player
@@ -110,6 +111,14 @@ public class Player {
 	 */
 	public void setType(int type) {
 		_type = type;
+	}
+
+	public int get_match() {
+		return _match;
+	}
+
+	public void set_match(int _match) {
+		this._match = _match;
 	}
 
 }
