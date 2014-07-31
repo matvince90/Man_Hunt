@@ -36,13 +36,13 @@ class JDBC implements DbWrapper {
     @Override
     public List<String> getPlayer(int playerId) {
    
-        List<String> playerData = new List<String>();
+        ArrayList<String> playerData = new ArrayList<String>();
 
         try {
             st = _dbConnection.createStatement();
-            rs = st.executeQuery("SELECT email, latitude, longitude, type " +
-                                           "FROM Players " + 
-                                           "WHERE Players.pid=" + playerId);
+            rs = st.executeQuery("SELECT * " +
+                                           "FROM Player " + 
+                                           "WHERE pid=" + playerId);
 
             while(rs.next()) {
                 playerData.add(rs.getString("pid"));
@@ -68,7 +68,7 @@ class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("INSERT INTO Player " + 
-                    "(email, latitude, longitude, status) VALUES ('" + 
+                    "(pid, email, latitude, longitude, type) VALUES (DEFAULT, '" + 
                     playerInformation.getEmail() + "','" +
                     playerInformation.getLatitude() + "','" +
                     playerInformation.getLongitude() + "','" +
@@ -77,8 +77,8 @@ class JDBC implements DbWrapper {
             st.close();
 
             st = _dbConnection.createStatement();
-            rs = st.executeQuery("SELECT pid FROM Players WHERE Players.email=" +
-                            playerInformation.getEmail());
+            rs = st.executeQuery("SELECT pid FROM Player WHERE email='" +
+                            playerInformation.getEmail() + "'");
 
             while(rs.next()) {
                 pid = rs.getInt("pid");
@@ -115,10 +115,10 @@ class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("UPDATE Player " +
-                             "SET email=" + playerInformation.getEmail() + ", " +
-                             "SET latitude=" + playerInformation.getLatitude() + ", " + 
-                             "SET longitude=" + playerInformation.getLongitude() + ", " + 
-                             "SET status=" + playerInformation.getStatus() + 
+                             "SET email='" + playerInformation.getEmail() + "', " +
+                             "latitude=" + playerInformation.getLatitude() + ", " + 
+                             "longitude=" + playerInformation.getLongitude() + ", " + 
+                             "type=" + playerInformation.getType() + 
                              "WHERE pid=" + playerInformation.getId());
 
             st.close();
@@ -141,7 +141,7 @@ class JDBC implements DbWrapper {
                              playerInformation.getEmail() + "','" +
                              playerInformation.getLatitude() + "','" +
                              playerInformation.getLongitude() + "','" +
-                             playerInformation.getStatus() + "')");
+                             playerInformation.getType() + "')");
     
             st.close();
         }
@@ -163,7 +163,7 @@ class JDBC implements DbWrapper {
             st.close();
         }
         catch (SQLException e) {
-            e.printStackTrack();
+            e.printStackTrace();
             return false;
         }
 
@@ -175,6 +175,7 @@ class JDBC implements DbWrapper {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
     @Override
 	public int createGameMatch(GameMatch gameMatch) {
         // TODO 
@@ -188,7 +189,7 @@ class JDBC implements DbWrapper {
 	}
 
     @Override
-    public List<int> getGameMatches() {
+    public List<Integer> getGameMatches() {
         // TODO
         return null;
     }
