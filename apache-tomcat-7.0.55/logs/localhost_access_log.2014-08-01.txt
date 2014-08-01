@@ -74,3 +74,5 @@
 127.0.0.1 - - [01/Aug/2014:01:38:35 -0400] "GET /ManhuntServerSide/rest/manhunt/update HTTP/1.1" 404 1025
 127.0.0.1 - - [01/Aug/2014:01:38:40 -0400] "GET /ManhuntServerSide/rest/manhunt/update/ HTTP/1.1" 404 1027
 127.0.0.1 - - [01/Aug/2014:01:38:42 -0400] "POST /ManhuntServerSide/rest/update HTTP/1.1" 404 1009
+127.0.0.1 - - [01/Aug/2014:07:43:54 -0400] "GET /ManhuntServerSide/rest/manhunt HTTP/1.1" 404 1011
+127.0.0.1 - - [01/Aug/2014:07:44:07 -0400] "GET /ManhuntServerSide/rest/manhunt/ HTTP/1.1" 404 1013

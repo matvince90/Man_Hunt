@@ -20,7 +20,7 @@ public class GameLogicController {
 	private static final int MAX_GAME_INSTANCES = 1;		// maximum number of instances.
 
 	private static List<GameMatch> _gameMatches;				// list of game matches
-	private static JDBC _dbWrapper;					// db class
+	private static DbWrapper _dbWrapper;					// db class
 	
 	private static GameLogicController _instance = null;	// singleton instance
 
@@ -28,7 +28,7 @@ public class GameLogicController {
 	 * 
 	 * @param dbCon
 	 */
-	protected GameLogicController(JDBC dbCon) {
+	protected GameLogicController(DbWrapper dbCon) {
 		_dbWrapper = dbCon;
 		_gameMatches = new ArrayList<GameMatch>();
 		initStateSetup();
@@ -41,7 +41,7 @@ public class GameLogicController {
 	public static GameLogicController getInstance() {
 		if(_instance == null) {
 			JDBC db = new JDBC();
-			_instance = new GameLogicController(db);//new JDBC());
+			_instance = new GameLogicController(db);
 		}
 		return _instance;
 	}
@@ -66,8 +66,6 @@ public class GameLogicController {
 	public PlayerMessageData updatePlayer(PlayerMessageData.PlayerData playerData) {
 		if(playerData.get_email().isEmpty() || playerData.get_lat() < 0 || playerData.get_long() < 0 || !validateEmail(playerData.get_email()))
 			return null;
-		// create our output object
-		PlayerMessageData playerMessageData = new PlayerMessageData();
 		
 		// attempt to get the game match.
 		GameMatch gm = new GameMatch(_gameMatches.get(0).getId(), _dbWrapper);

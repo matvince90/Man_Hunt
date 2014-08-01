@@ -58,14 +58,6 @@ public class Player {
 	}
 
 	/**
-	 * Set the value of id
-	 * @param id
-	 */
-	private void setId(int id) {
-		_id = id;
-	}
-
-	/**
 	 * Get the value of latitude
 	 * @return float
 	 */

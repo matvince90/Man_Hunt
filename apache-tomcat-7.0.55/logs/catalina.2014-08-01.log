@@ -282,3 +282,179 @@ Aug 01, 2014 1:38:32 AM org.apache.catalina.core.StandardContext startInternal
 SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
 Aug 01, 2014 1:38:32 AM org.apache.catalina.startup.HostConfig deployWAR
 INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 154 ms
+Aug 01, 2014 7:42:50 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Aug 01, 2014 7:42:50 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Aug 01, 2014 7:42:52 AM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Aug 01, 2014 7:42:53 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:42:53 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:42:53 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 3350 ms
+Aug 01, 2014 7:42:53 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 01, 2014 7:42:53 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Aug 01, 2014 7:42:53 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 7:42:54 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 7:42:54 AM org.apache.catalina.util.SessionIdGenerator createSecureRandom
+INFO: Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [132] milliseconds.
+Aug 01, 2014 7:42:54 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 7:42:54 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 1,001 ms
+Aug 01, 2014 7:42:54 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Aug 01, 2014 7:42:54 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 109 ms
+Aug 01, 2014 7:42:54 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 669 ms
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 80 ms
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 59 ms
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 69 ms
+Aug 01, 2014 7:42:55 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:42:55 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:42:55 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 2182 ms
+Aug 01, 2014 7:52:06 AM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/ManhuntServerSide]
+Aug 01, 2014 7:52:06 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 7:52:06 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 7:52:06 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 7:52:06 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 139 ms
+Aug 01, 2014 7:54:01 AM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:54:01 AM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:54:01 AM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Aug 01, 2014 7:54:01 AM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:54:01 AM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:54:02 AM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:54:02 AM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:57:48 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Aug 01, 2014 7:57:48 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Aug 01, 2014 7:57:49 AM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Aug 01, 2014 7:57:49 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:57:49 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:57:49 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1396 ms
+Aug 01, 2014 7:57:49 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 01, 2014 7:57:49 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Aug 01, 2014 7:57:49 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 7:57:49 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 7:57:49 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 7:57:49 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 478 ms
+Aug 01, 2014 7:57:49 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 72 ms
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 448 ms
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 70 ms
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 63 ms
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 69 ms
+Aug 01, 2014 7:57:50 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 7:57:50 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 7:57:50 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1273 ms
+Aug 01, 2014 8:00:54 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Aug 01, 2014 8:00:54 AM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Aug 01, 2014 8:00:55 AM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Aug 01, 2014 8:00:55 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 8:00:55 AM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 8:00:55 AM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1532 ms
+Aug 01, 2014 8:00:55 AM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 01, 2014 8:00:55 AM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Aug 01, 2014 8:00:55 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 8:00:56 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 8:00:56 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 476 ms
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 73 ms
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 462 ms
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 65 ms
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 61 ms
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 67 ms
+Aug 01, 2014 8:00:56 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 8:00:56 AM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 8:00:56 AM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1274 ms

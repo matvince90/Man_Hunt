@@ -2,7 +2,6 @@ package com.fiu.manhunt.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import com.fiu.manhunt.data.DbWrapper;
 

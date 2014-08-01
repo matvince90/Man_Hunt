@@ -29,7 +29,6 @@ public class EndPointsService {
 	 * @return
 	 */
 	@GET
-	@Path("/update")
 	public Response responseMsg( @FormParam("playerJsonData") String playerJsonData) {
 		// exposed at http://localhost:8081/ManhuntServerSide/rest/manhunt/update
 
