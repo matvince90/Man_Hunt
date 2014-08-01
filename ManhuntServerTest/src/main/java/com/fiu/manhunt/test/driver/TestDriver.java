@@ -12,7 +12,7 @@ import com.fiu.manhunt.test.modules.ControllerTest;
 import com.google.gson.Gson;
 
 public class TestDriver {
-	private static final int NUM_TESTS = 10;
+	private static final int NUM_TESTS = 3;
 	private static Random _rnd;
 
 	/**

@@ -35,6 +35,9 @@ public class GameMatch {
 		if(gm != null && gm.size() > 0) {
 			_id = id;
 			_matchPlayers = new ArrayList<Player>();
+			List<String> pIds = _dbCon.getAllGameMatchPlayers(id);
+			for(String i: pIds)
+				_matchPlayers.add(new Player(i, _dbCon));
 		}
 	}
     
@@ -75,11 +78,13 @@ public class GameMatch {
   	 * @param player
   	 */
   	public void updateMatchPlayer(Player player) {
-  		for(int i = 0; i < _matchPlayers.size(); i++) {
+  		int totalPlayers = _matchPlayers.size();
+  		for(int i = 0; i < totalPlayers; i++) {
   			Player p = _matchPlayers.get(i);
   			if(p.getId() == player.getId()) {
   				_matchPlayers.add(i, player);
   				_dbCon.updatePlayer(player);
+  				break;
   			}
   		}
 	}
@@ -126,7 +131,7 @@ public class GameMatch {
      */
   	public void addPlayer(List<Player> player){
   		for(Player p : player){
-  			this.addMatchPlayer(p, _id);
+  			addMatchPlayer(p, _id);
   		}
 	}
 

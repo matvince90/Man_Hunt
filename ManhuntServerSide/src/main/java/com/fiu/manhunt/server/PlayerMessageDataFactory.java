@@ -19,11 +19,13 @@ public class PlayerMessageDataFactory {
 	 */
 	public static PlayerMessageData createPlayerMessageData(List<Player> players) {
 		PlayerMessageData playerMessageData = new PlayerMessageData();
-		int playerCount, i = 0;
-		if((playerCount = players.size()) > 0) {
+		int playerCount = players.size(), 
+				i = 0;
+		if(playerCount > 0) {
 			playerMessageData.playerData = new PlayerMessageData.PlayerData[playerCount];
 			for(Player player: players)
 				playerMessageData.playerData[i++] = PlayerMessageDataFactory.createPlayerData(player, playerMessageData);
+			return playerMessageData;
 				
 		}
 		return null;

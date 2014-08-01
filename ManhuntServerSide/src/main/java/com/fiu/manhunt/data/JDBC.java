@@ -351,17 +351,17 @@ public class JDBC implements DbWrapper {
         return allGameMatches;
     }
 
-    public List<Integer> getAllGameMatchPlayers(int gameMatchId) {
+    public List<String> getAllGameMatchPlayers(int gameMatchId) {
 
-        ArrayList<Integer> allPlayers = new ArrayList<Integer>();
+        ArrayList<String> allPlayers = new ArrayList<String>();
 
         try {
             st = _dbConnection.createStatement();
-            rs = st.executeQuery("SELECT pid FROM GameMatchPlayers " + 
-                                 "WHERE gid=" + gameMatchId);
+            rs = st.executeQuery("SELECT email FROM player WHERE pid in (SELECT pid FROM GameMatchPlayers " + 
+                                 "WHERE gid=" + gameMatchId +");");
 
             while(rs.next()) {
-                allPlayers.add(rs.getInt("pid"));
+                allPlayers.add(rs.getString("email"));
             }
 
             rs.close();

@@ -51,7 +51,6 @@ public class GameLogicController {
 	 */
 	private void initStateSetup() {
 		List<Integer> gameMatchIds =  _dbWrapper.getAllGameMatches();
-		System.out.println("Matches " + gameMatchIds.toString());
 		for(int id: gameMatchIds) {
 			_gameMatches.add(new GameMatch(id, _dbWrapper));
 		}
@@ -83,7 +82,6 @@ public class GameLogicController {
 			player.setLatitude(playerData.get_lat());
 			player.setLongitude(playerData.get_long());
 			player.setType(playerData.get_type());
-			
 			// check if we are updating this player or adding it
 			if(player.getId() > 0)  {
 				gm.updateMatchPlayer(player);

@@ -82,9 +82,9 @@ public interface DbWrapper {
   public List<Integer> getAllGameMatches();
 
     /**
-     * @return       List<Integer>
+     * @return       List<String>
      * @param        int
      */
-  public List<Integer> getAllGameMatchPlayers(int gameMatchId);
+  public List<String> getAllGameMatchPlayers(int gameMatchId);
     
 }
