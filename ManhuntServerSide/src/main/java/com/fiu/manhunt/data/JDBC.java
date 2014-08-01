@@ -224,7 +224,6 @@ public class JDBC implements DbWrapper {
             playerId = 0;
             while(rs.next()) {
                 playerId = rs.getInt("pid");
-                System.out.println(playerId);
             }
             
             rs.close();
