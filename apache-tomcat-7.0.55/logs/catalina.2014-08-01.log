@@ -252,3 +252,33 @@ Aug 01, 2014 1:18:30 AM org.apache.coyote.AbstractProtocol start
 INFO: Starting ProtocolHandler ["ajp-apr-8009"]
 Aug 01, 2014 1:18:30 AM org.apache.catalina.startup.Catalina start
 INFO: Server startup in 1741 ms
+Aug 01, 2014 1:29:40 AM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/ManhuntServerSide]
+Aug 01, 2014 1:29:40 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 1:29:41 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 1:29:41 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 1:29:41 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 129 ms
+Aug 01, 2014 1:32:41 AM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/ManhuntServerSide]
+Aug 01, 2014 1:32:41 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 1:32:41 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 1:32:41 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 1:32:41 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 144 ms
+Aug 01, 2014 1:38:31 AM org.apache.catalina.startup.HostConfig undeploy
+INFO: Undeploying context [/ManhuntServerSide]
+Aug 01, 2014 1:38:32 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 1:38:32 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Error listenerStart
+Aug 01, 2014 1:38:32 AM org.apache.catalina.core.StandardContext startInternal
+SEVERE: Context [/ManhuntServerSide] startup failed due to previous errors
+Aug 01, 2014 1:38:32 AM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 154 ms
