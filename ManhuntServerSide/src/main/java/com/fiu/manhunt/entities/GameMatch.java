@@ -19,7 +19,8 @@ public class GameMatch {
 	/**
 	 * returns a newly created game match
 	 */
-	public GameMatch() {
+	public GameMatch(DbWrapper db) {
+		_dbCon = db;
 		_matchPlayers = new ArrayList<Player>();
 		//_id = _dbCon.getHighestId() + 1;
 		_dbCon.createGameMatch(this);
@@ -28,12 +29,12 @@ public class GameMatch {
 	 * returns a game match with db context
 	 * @param id, game match id
 	 */
-	public GameMatch(int id) {
+	public GameMatch(int id, DbWrapper db) {
+		_dbCon = db;
 		List<String> gm = _dbCon.getGameMatch(id);
-		if(gm == null) {
+		if(gm != null && gm.size() > 0) {
 			_id = id;
 			_matchPlayers = new ArrayList<Player>();
-			_dbCon.createGameMatch(this);
 		}
 	}
     
@@ -41,9 +42,10 @@ public class GameMatch {
      * Set the value of matchPlayers
      * @param newVar the new value of matchPlayers
      */
-    public void addMatchPlayer (Player player) {
-    	List<String> pl = _dbCon.getPlayer(player.getEmail());
-    	if(pl == null){
+    public void addMatchPlayer (Player player, int matchId) {
+    	int id = _dbCon.addPlayer(player);
+    	_dbCon.addPlayerToGameMatch(id, matchId);
+    	if(id > 0){
     		_matchPlayers.add(player);
     	}
 	}
@@ -53,9 +55,9 @@ public class GameMatch {
   	 * @param uid value of id for user to return
   	 * @return value of player with id = uid
   	 */
-  	public Player getMatchPlayer(UUID uid) {
+  	public Player getMatchPlayer(int uid) {
   		for(Player p: _matchPlayers) {
-  			if(uid.equals(p.getId()))
+  			if(uid == p.getId())
   				return p;
   		}
   		return null;
@@ -75,8 +77,10 @@ public class GameMatch {
   	public void updateMatchPlayer(Player player) {
   		for(int i = 0; i < _matchPlayers.size(); i++) {
   			Player p = _matchPlayers.get(i);
-  			if(p.getId() == player.getId())
+  			if(p.getId() == player.getId()) {
   				_matchPlayers.add(i, player);
+  				_dbCon.updatePlayer(player);
+  			}
   		}
 	}
 
@@ -122,7 +126,7 @@ public class GameMatch {
      */
   	public void addPlayer(List<Player> player){
   		for(Player p : player){
-  			this.addMatchPlayer(p);
+  			this.addMatchPlayer(p, _id);
   		}
 	}
 

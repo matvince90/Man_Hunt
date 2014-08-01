@@ -23,8 +23,8 @@ public class JDBC implements DbWrapper {
 
         try {
             Class.forName("org.postgresql.Driver");
-            String url = "jdbc:postgresql://127.0.0.1/ManhuntDB";
-            _dbConnection = DriverManager.getConnection(url, "mahmed", "M4u1S6a6");
+            String url = "jdbc:postgresql://127.0.0.1/manhunt";
+            _dbConnection = DriverManager.getConnection(url, "postgres", "test123");
         }
         catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class JDBC implements DbWrapper {
                 playerData.add(rs.getString("email"));
                 playerData.add(rs.getString("latitude"));
                 playerData.add(rs.getString("longitude"));
-                playerData.add(rs.getString("status"));
+                playerData.add(rs.getString("type"));
             }
 
             rs.close();
@@ -90,7 +90,7 @@ public class JDBC implements DbWrapper {
         try {
             st = _dbConnection.createStatement();
             st.executeUpdate("INSERT INTO Player " + 
-                    "(pid, email, latitude, longitude, status) VALUES (DEFAULT, '" + 
+                    "(pid, email, latitude, longitude, type) VALUES (DEFAULT, '" + 
                     playerInformation.getEmail() + "','" +
                     playerInformation.getLatitude() + "','" +
                     playerInformation.getLongitude() + "','" +
@@ -158,7 +158,7 @@ public class JDBC implements DbWrapper {
                              "SET email='" + playerInformation.getEmail() + "', " +
                              "latitude=" + playerInformation.getLatitude() + ", " + 
                              "longitude=" + playerInformation.getLongitude() + ", " + 
-                             "status=" + playerInformation.getType() + 
+                             "type=" + playerInformation.getType() + 
                              "WHERE pid=" + playerInformation.getId());
 
             st.close();
@@ -269,14 +269,14 @@ public class JDBC implements DbWrapper {
             rs = st.executeQuery("SELECT * " +
                                  "FROM GameMatch " +
                                  "WHERE gid=" + gameMatchId);
-
+ 
             while(rs.next()) {
                 gameMatchData.add(rs.getString("gid"));
-                gameMatchData.add(rs.getString("startTime"));
+                gameMatchData.add(rs.getString("starttime"));
                 gameMatchData.add(rs.getString("active"));
             }
         }
-        catch (SQLException e) {
+        catch (Exception e) {
             e.printStackTrace();
             return null;
         }

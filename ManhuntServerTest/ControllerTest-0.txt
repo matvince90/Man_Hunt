@@ -1,0 +1,80 @@
+
+--Test 0 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":13.4574,"_long":25.6914,"_match":0}
+
+--Test 0 output--
+
+null
+
+--Test 1 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":6.117,"_long":19.5744,"_match":0}
+
+--Test 1 output--
+
+null
+
+--Test 2 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":19.5744,"_long":41.5956,"_match":0}
+
+--Test 2 output--
+
+null
+
+--Test 3 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":20.7978,"_long":31.8084,"_match":0}
+
+--Test 3 output--
+
+null
+
+--Test 4 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":24.468,"_long":8.5638,"_match":0}
+
+--Test 4 output--
+
+null
+
+--Test 5 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0}
+
+--Test 5 output--
+
+null
+
+--Test 6 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":29.361599,"_long":18.351,"_match":0}
+
+--Test 6 output--
+
+null
+
+--Test 7 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":25.6914,"_long":45.2658,"_match":0}
+
+--Test 7 output--
+
+null
+
+--Test 8 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":12.234,"_long":24.468,"_match":0}
+
+--Test 8 output--
+
+null
+
+--Test 9 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":20.7978,"_long":30.585,"_match":0}
+
+--Test 9 output--
+
+null

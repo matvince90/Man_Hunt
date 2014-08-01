@@ -6,12 +6,13 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Random;
 
+import com.fiu.manhunt.data.JDBC;
 import com.fiu.manhunt.server.PlayerMessageData;
 import com.fiu.manhunt.test.modules.ControllerTest;
 import com.google.gson.Gson;
 
 public class TestDriver {
-	private static final int NUM_TESTS = 25;
+	private static final int NUM_TESTS = 10;
 	private static Random _rnd;
 
 	/**
@@ -20,11 +21,13 @@ public class TestDriver {
 	public static void main(String[] args) {
 		_rnd = new Random();
 		_rnd.setSeed(0);
-
 		try {
+			JDBC db = new JDBC();
 			TestController();
 		} catch (Exception E) {
+			E.printStackTrace();
 			System.out.println("Something major broke.");
+			
 		}
 	}
 
@@ -49,6 +52,7 @@ public class TestDriver {
 			pd.set_long((float) 1.2234 * (float) getRandomRange(5, 40));
 
 			// expected input
+			
 			String playerJsonData = gson.toJson(pd);
 			writer.println("\n--Test " + i + " input--\n");
 			writer.println(playerJsonData);
@@ -57,7 +61,9 @@ public class TestDriver {
 			writer.println("\n--Test " + i + " output--\n");
 			writer.println(ct.TestPlayerUpdate(playerJsonData));
 		}
+		writer.close();
 
+		/*
 		// bad test cases
 		for (int i = 0; i < NUM_TESTS; i++) {
 			// test with valid e-mail, invalid e-mail, and no e-mail
@@ -96,8 +102,8 @@ public class TestDriver {
 				pd.set_long(0);
 			}
 			else {
-				pd.set_lat((float)10000000000000000000000000000000000000000000.0 * (i % 5));
-				pd.set_long((float)1000000000000000000000000000000000000000000.0 * (i % 5));
+				pd.set_lat((float)1000.0 * (i % 5));
+				pd.set_long((float)1000.0 * (i % 5));
 			}
 
 			// expected input
@@ -108,7 +114,7 @@ public class TestDriver {
 			// write out results
 			writer.println("\n--Bad E-mail Test " + i + " output--\n");
 			writer.println(ct.TestPlayerUpdate(playerJsonData));
-		}
+		} */
 		writer.close();
 	}
 

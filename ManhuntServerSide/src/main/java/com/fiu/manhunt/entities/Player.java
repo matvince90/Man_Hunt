@@ -32,7 +32,7 @@ public class Player {
 	public Player(String email, DbWrapper db) {
 		_dbCon = db;
 		List<String> player = _dbCon.getPlayer(email);
-		if (player != null) {
+		if (player.size() > 1) {
 			_email = player.get(1);
 			_latitude = Float.parseFloat(player.get(2));
 			_longitude = Float.parseFloat(player.get(3));
