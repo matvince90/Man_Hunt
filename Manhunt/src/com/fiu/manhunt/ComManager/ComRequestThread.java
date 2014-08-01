@@ -1,4 +1,4 @@
-package ComManager;
+package com.fiu.manhunt.ComManager;
 
 
 /**
@@ -6,34 +6,34 @@ package ComManager;
  */
 public interface ComRequestThread {
 
-    //
-    // Fields
-    //
-
-  
-    //
-    // Methods
-    //
-
-
-    //
-    // Accessor methods
-    //
-
-    //
-    // Other methods
-    //
-
-    /**
-     * @param        message
-     */
-  public void httpRequest(ComManager.ComMessage message);
-
-
-    /**
-     * @param        functionCallback
-     */
-  public void handleResponse(Callable<T> functionCallback);
-
+//    //
+//    // Fields
+//    //
+//
+//  
+//    //
+//    // Methods
+//    //
+//
+//
+//    //
+//    // Accessor methods
+//    //
+//
+//    //
+//    // Other methods
+//    //
+//
+//    /**
+//     * @param        message
+//     */
+//  public void httpRequest(ComManager.ComMessage message);
+//
+//
+//    /**
+//     * @param        functionCallback
+//     */
+//  public void handleResponse(Callable<T> functionCallback);
+//
 
 }
