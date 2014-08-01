@@ -29,7 +29,8 @@ public class GameMatch {
 	 * @param id, game match id
 	 */
 	public GameMatch(int id) {
-		if(!_dbCon.getGameMatch(id)) {
+		List<String> gm = _dbCon.getGameMatch(id);
+		if(gm == null) {
 			_id = id;
 			_matchPlayers = new ArrayList<Player>();
 			_dbCon.createGameMatch(this);
@@ -41,7 +42,8 @@ public class GameMatch {
      * @param newVar the new value of matchPlayers
      */
     public void addMatchPlayer (Player player) {
-    	if(!_dbCon.getPlayer(player.getId())){
+    	List<String> pl = _dbCon.getPlayer(player.getEmail());
+    	if(pl == null){
     		_matchPlayers.add(player);
     	}
 	}
@@ -73,7 +75,7 @@ public class GameMatch {
   	public void updateMatchPlayer(Player player) {
   		for(int i = 0; i < _matchPlayers.size(); i++) {
   			Player p = _matchPlayers.get(i);
-  			if(p.getId().equals(player.getId()))
+  			if(p.getId() == player.getId())
   				_matchPlayers.add(i, player);
   		}
 	}
@@ -130,7 +132,7 @@ public class GameMatch {
      */
   	public void removePlayer(int id){
   		for(Player p : _matchPlayers) {
-  			if (p.getId().equals(id)) {
+  			if (p.getId() == id) {
   				_matchPlayers.remove(p);
   				_dbCon.removePlayer(p.getId());
   			}
