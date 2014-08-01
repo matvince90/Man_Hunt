@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fiu.manhunt.data.DbWrapper;
+import com.fiu.manhunt.server.ServerOutput;
 
 /**
  * Class ServerGameMatch
@@ -35,8 +36,13 @@ public class GameMatch {
 			_id = id;
 			_matchPlayers = new ArrayList<Player>();
 			List<String> pIds = _dbCon.getAllGameMatchPlayers(id);
-			for(String i: pIds)
-				_matchPlayers.add(new Player(i, _dbCon));
+			for(String i: pIds) {
+				if(!_dbCon.checkBanPlayer(i.toLowerCase()))
+					_matchPlayers.add(new Player(i, _dbCon));
+				else
+					ServerOutput.println("Match init found banned player in match, removed from output.");
+					
+			}
 		}
 	}
     
@@ -52,25 +58,19 @@ public class GameMatch {
     	}
 	}
   
-  	/**
-  	 * Get the value of matchPlayers
-  	 * @param uid value of id for user to return
-  	 * @return value of player with id = uid
-  	 */
-  	public Player getMatchPlayer(int uid) {
-  		for(Player p: _matchPlayers) {
-  			if(uid == p.getId())
-  				return p;
-  		}
-  		return null;
-	}
-  
     /**
      * Get the value of matchPlayers
      * @return the value of matchPlayers
      */
-  	public List<Player> getMatchPlayers() {
-  		return _matchPlayers;
+  	public List<Player> getMatchPlayers(String doNotInclude) {
+  		List<Player> result = new ArrayList<Player>();
+  		// strip out the requesting player
+  		for(Player p: _matchPlayers) {
+  			if(!p.getEmail().equalsIgnoreCase(doNotInclude)) {
+  				result.add(p);
+  			}
+  		}
+  		return result;
 	}
   	/**
   	 * 
@@ -81,7 +81,7 @@ public class GameMatch {
   		for(int i = 0; i < totalPlayers; i++) {
   			Player p = _matchPlayers.get(i);
   			if(p.getId() == player.getId()) {
-  				_matchPlayers.add(i, player);
+  				_matchPlayers.set(i, player);
   				_dbCon.updatePlayer(player);
   				break;
   			}

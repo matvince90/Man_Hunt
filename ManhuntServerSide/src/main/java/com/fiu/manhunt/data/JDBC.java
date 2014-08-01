@@ -220,16 +220,27 @@ public class JDBC implements DbWrapper {
             st = _dbConnection.createStatement();
             rs = st.executeQuery("SELECT * FROM BanList " +
                                  "WHERE pid=" + playerId);
-
+            
+            playerId = 0;
+            while(rs.next()) {
+                playerId = rs.getInt("pid");
+                System.out.println(playerId);
+            }
+            
             rs.close();
             st.close();
+            
+            if(playerId <= 0)
+            	return false;
+            else
+            	return true;
+            
         }
         catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
 
-        return true;
+        return false;
     }
 
     public boolean unBanPlayer(String email) {

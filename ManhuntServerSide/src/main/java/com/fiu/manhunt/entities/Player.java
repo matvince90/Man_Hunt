@@ -16,6 +16,7 @@ public class Player {
 	private int _id = -1;
 	private int _type;
 	private int _match;
+	private boolean _valid;
 	
 	/**
 	 * new player
@@ -31,7 +32,13 @@ public class Player {
 	 */
 	public Player(String email, DbWrapper db) {
 		_dbCon = db;
+		_valid = true;
+		if(_dbCon.checkBanPlayer(email)) {
+			_valid = false;
+			return;
+		}
 		List<String> player = _dbCon.getPlayer(email);
+		
 		if (player.size() > 1) {
 			_email = player.get(1);
 			_latitude = Float.parseFloat(player.get(2));
@@ -55,6 +62,14 @@ public class Player {
 	 */
 	public int getId() {
 		return _id;
+	}
+	
+	/**
+	 * Check if player is in ban list.
+	 * @return
+	 */
+	public boolean getValid() {
+		return _valid;
 	}
 
 	/**

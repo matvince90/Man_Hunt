@@ -16,13 +16,13 @@ import com.fiu.manhunt.entities.Player;
 public class GameLogicController {
 
 	// constants
-	private static final int MAX_PLAYERS = 50;				// max players per instance.
-	private static final int MAX_GAME_INSTANCES = 1;		// maximum number of instances.
+	//private static final int MAX_PLAYERS = 50;				// max players per instance.
+	private static final int MAX_GAME_INSTANCES = 1;			// maximum number of instances.
 
 	private static List<GameMatch> _gameMatches;				// list of game matches
-	private static DbWrapper _dbWrapper;					// db class
+	private static DbWrapper _dbWrapper;						// db class
 	
-	private static GameLogicController _instance = null;	// singleton instance
+	private static GameLogicController _instance = null;		// singleton instance
 
 	/**
 	 * 
@@ -35,7 +35,7 @@ public class GameLogicController {
 	}
 	
 	/**
-	 * 
+	 * singleton pattern static instance instanciator
 	 * @return
 	 */
 	public static GameLogicController getInstance() {
@@ -64,8 +64,10 @@ public class GameLogicController {
 	 * @return
 	 */
 	public PlayerMessageData updatePlayer(PlayerMessageData.PlayerData playerData) {
+		ServerOutput.println("Player Update Request Received... processing.");
 		if(playerData.get_email().isEmpty() || playerData.get_lat() < 0 || playerData.get_long() < 0 || !validateEmail(playerData.get_email()))
 			return null;
+		ServerOutput.println("Player request input is valid, proceeding...");
 		
 		// attempt to get the game match.
 		GameMatch gm = new GameMatch(_gameMatches.get(0).getId(), _dbWrapper);
@@ -74,7 +76,11 @@ public class GameLogicController {
 		// check if game match is valid
 		if(gm.getId() > 0) {
 			// attempt to get the player by email
-			Player player = new Player(playerData.get_email(), _dbWrapper);
+			Player player = new Player(playerData.get_email().toLowerCase(), _dbWrapper);
+			
+			// check if player is banned.
+			if(!player.getValid())
+				return null;
 			
 			// either way set the update variables
 			player.setLatitude(playerData.get_lat());
@@ -83,13 +89,15 @@ public class GameLogicController {
 			// check if we are updating this player or adding it
 			if(player.getId() > 0)  {
 				gm.updateMatchPlayer(player);
+				ServerOutput.println("Player data updated...");
 			} else {
-				player.set_email(playerData.get_email());
+				player.set_email(playerData.get_email().toLowerCase());
 				gm.addMatchPlayer(player, gm.getId());
+				ServerOutput.println("Player added to the match...");
 			}
 			
 			// get the list of players in the current match.
-			List<Player> gmPlayers = gm.getMatchPlayers();
+			List<Player> gmPlayers = gm.getMatchPlayers(playerData.get_email().toLowerCase());
 			if(gmPlayers.size() > 0)
 				return PlayerMessageDataFactory.createPlayerMessageData(gmPlayers);
 		}

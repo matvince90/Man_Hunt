@@ -1,6 +1,6 @@
 package com.fiu.manhunt.resteasy;
 
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.core.Response;
@@ -28,12 +28,12 @@ public class EndPointsService {
 	 * @param playerJsonData
 	 * @return
 	 */
-	@GET
-	public Response responseMsg( @FormParam("playerJsonData") String playerJsonData) {
-		// exposed at http://localhost:8081/ManhuntServerSide/rest/manhunt/update
+	@POST
+	public Response responseMsg( @FormParam("player") String player) {
+		// exposed at http://localhost:8081/ManhuntServerSide/rest/manhunt
 
 		// use the playerdata factory to create a valid player object
-		PlayerMessageData.PlayerData playerData = PlayerMessageDataFactory.createPlayerData(playerJsonData);
+		PlayerMessageData.PlayerData playerData = PlayerMessageDataFactory.createPlayerData(player);
 		
 		// if we recieved valid json then move along.
 		if(playerData != null) {

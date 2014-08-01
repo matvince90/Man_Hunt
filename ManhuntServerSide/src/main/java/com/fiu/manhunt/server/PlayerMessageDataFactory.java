@@ -42,6 +42,7 @@ public class PlayerMessageDataFactory {
 		playerData.set_lat(player.getLatitude());
 		playerData.set_long(player.getLongitude());
 		playerData.set_type(player.getType());
+		playerData.set_playerId(player.getId());
 		return playerData;
 	}
 	
