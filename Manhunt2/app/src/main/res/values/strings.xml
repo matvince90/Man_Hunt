@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Manhunt</string>
+    <string name="title_activity_game">Manhunt</string>
+    <string name="title_activity_spash"></string>
+    <string name="dummy_button">Play Now!</string>
+    <string name="dummy_content"></string>
+
+</resources>
