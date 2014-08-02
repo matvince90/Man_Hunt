@@ -1,0 +1,200 @@
+
+--Test 0 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":13.4574,"_long":25.6914,"_match":0}
+
+--Test 0 output--
+
+null
+
+--Test 1 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":6.117,"_long":19.5744,"_match":0}
+
+--Test 1 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":13.4574,"_long":25.6914,"_match":0}]}
+
+--Test 2 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":19.5744,"_long":41.5956,"_match":0}
+
+--Test 2 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":13.4574,"_long":25.6914,"_match":0},{"_playerId":2,"_type":0,"_lat":6.117,"_long":19.5744,"_match":0}]}
+
+--Test 3 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":20.7978,"_long":31.8084,"_match":0}
+
+--Test 3 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":13.4574,"_long":25.6914,"_match":0},{"_playerId":2,"_type":0,"_lat":6.117,"_long":19.5744,"_match":0},{"_playerId":3,"_type":0,"_lat":19.5744,"_long":41.5956,"_match":0}]}
+
+--Test 4 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":24.468,"_long":8.5638,"_match":0}
+
+--Test 4 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":24.468,"_long":8.5638,"_match":0},{"_playerId":2,"_type":0,"_lat":6.117,"_long":19.5744,"_match":0},{"_playerId":3,"_type":0,"_lat":19.5744,"_long":41.5956,"_match":0},{"_playerId":4,"_type":0,"_lat":20.7978,"_long":31.8084,"_match":0}]}
+
+--Test 5 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0}
+
+--Test 5 output--
+
+{"playerData":[{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0},{"_playerId":3,"_type":0,"_lat":19.5744,"_long":41.5956,"_match":0},{"_playerId":4,"_type":0,"_lat":20.7978,"_long":31.8084,"_match":0},{"_playerId":1,"_type":0,"_lat":24.468,"_long":8.5638,"_match":0}]}
+
+--Test 6 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":29.361599,"_long":18.351,"_match":0}
+
+--Test 6 output--
+
+{"playerData":[{"_playerId":3,"_type":0,"_lat":29.361599,"_long":18.351,"_match":0},{"_playerId":4,"_type":0,"_lat":20.7978,"_long":31.8084,"_match":0},{"_playerId":1,"_type":0,"_lat":24.468,"_long":8.5638,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0}]}
+
+--Test 7 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":25.6914,"_long":45.2658,"_match":0}
+
+--Test 7 output--
+
+{"playerData":[{"_playerId":4,"_type":0,"_lat":25.6914,"_long":45.2658,"_match":0},{"_playerId":1,"_type":0,"_lat":24.468,"_long":8.5638,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0},{"_playerId":3,"_type":0,"_lat":29.361599,"_long":18.351,"_match":0}]}
+
+--Test 8 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":12.234,"_long":24.468,"_match":0}
+
+--Test 8 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":12.234,"_long":24.468,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":26.9148,"_match":0},{"_playerId":3,"_type":0,"_lat":29.361599,"_long":18.351,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":45.2658,"_match":0}]}
+
+--Test 9 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":20.7978,"_long":30.585,"_match":0}
+
+--Test 9 output--
+
+{"playerData":[{"_playerId":2,"_type":0,"_lat":20.7978,"_long":30.585,"_match":0},{"_playerId":3,"_type":0,"_lat":29.361599,"_long":18.351,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":45.2658,"_match":0},{"_playerId":1,"_type":0,"_lat":12.234,"_long":24.468,"_match":0}]}
+
+--Test 10 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":23.2446,"_long":6.117,"_match":0}
+
+--Test 10 output--
+
+{"playerData":[{"_playerId":3,"_type":0,"_lat":23.2446,"_long":6.117,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":45.2658,"_match":0},{"_playerId":1,"_type":0,"_lat":12.234,"_long":24.468,"_match":0},{"_playerId":2,"_type":0,"_lat":20.7978,"_long":30.585,"_match":0}]}
+
+--Test 11 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":30.585,"_long":34.2552,"_match":0}
+
+--Test 11 output--
+
+{"playerData":[{"_playerId":4,"_type":0,"_lat":30.585,"_long":34.2552,"_match":0},{"_playerId":1,"_type":0,"_lat":12.234,"_long":24.468,"_match":0},{"_playerId":2,"_type":0,"_lat":20.7978,"_long":30.585,"_match":0},{"_playerId":3,"_type":0,"_lat":23.2446,"_long":6.117,"_match":0}]}
+
+--Test 12 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":3.6701999,"_long":40.3722,"_match":0}
+
+--Test 12 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":3.6701999,"_long":40.3722,"_match":0},{"_playerId":2,"_type":0,"_lat":20.7978,"_long":30.585,"_match":0},{"_playerId":3,"_type":0,"_lat":23.2446,"_long":6.117,"_match":0},{"_playerId":4,"_type":0,"_lat":30.585,"_long":34.2552,"_match":0}]}
+
+--Test 13 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":4.8936,"_long":47.7126,"_match":0}
+
+--Test 13 output--
+
+{"playerData":[{"_playerId":2,"_type":0,"_lat":4.8936,"_long":47.7126,"_match":0},{"_playerId":3,"_type":0,"_lat":23.2446,"_long":6.117,"_match":0},{"_playerId":4,"_type":0,"_lat":30.585,"_long":34.2552,"_match":0},{"_playerId":1,"_type":0,"_lat":3.6701999,"_long":40.3722,"_match":0}]}
+
+--Test 14 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":22.0212,"_long":48.936,"_match":0}
+
+--Test 14 output--
+
+{"playerData":[{"_playerId":3,"_type":0,"_lat":22.0212,"_long":48.936,"_match":0},{"_playerId":4,"_type":0,"_lat":30.585,"_long":34.2552,"_match":0},{"_playerId":1,"_type":0,"_lat":3.6701999,"_long":40.3722,"_match":0},{"_playerId":2,"_type":0,"_lat":4.8936,"_long":47.7126,"_match":0}]}
+
+--Test 15 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":25.6914,"_long":41.5956,"_match":0}
+
+--Test 15 output--
+
+{"playerData":[{"_playerId":4,"_type":0,"_lat":25.6914,"_long":41.5956,"_match":0},{"_playerId":1,"_type":0,"_lat":3.6701999,"_long":40.3722,"_match":0},{"_playerId":2,"_type":0,"_lat":4.8936,"_long":47.7126,"_match":0},{"_playerId":3,"_type":0,"_lat":22.0212,"_long":48.936,"_match":0}]}
+
+--Test 16 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":15.9042,"_long":19.5744,"_match":0}
+
+--Test 16 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":15.9042,"_long":19.5744,"_match":0},{"_playerId":2,"_type":0,"_lat":4.8936,"_long":47.7126,"_match":0},{"_playerId":3,"_type":0,"_lat":22.0212,"_long":48.936,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":41.5956,"_match":0}]}
+
+--Test 17 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":3.6701999,"_long":8.5638,"_match":0}
+
+--Test 17 output--
+
+{"playerData":[{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":22.0212,"_long":48.936,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":41.5956,"_match":0},{"_playerId":1,"_type":0,"_lat":15.9042,"_long":19.5744,"_match":0}]}
+
+--Test 18 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":1.2234,"_long":41.5956,"_match":0}
+
+--Test 18 output--
+
+{"playerData":[{"_playerId":3,"_type":0,"_lat":1.2234,"_long":41.5956,"_match":0},{"_playerId":4,"_type":0,"_lat":25.6914,"_long":41.5956,"_match":0},{"_playerId":1,"_type":0,"_lat":15.9042,"_long":19.5744,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":8.5638,"_match":0}]}
+
+--Test 19 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":17.1276,"_long":24.468,"_match":0}
+
+--Test 19 output--
+
+{"playerData":[{"_playerId":4,"_type":0,"_lat":17.1276,"_long":24.468,"_match":0},{"_playerId":1,"_type":0,"_lat":15.9042,"_long":19.5744,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":1.2234,"_long":41.5956,"_match":0}]}
+
+--Test 20 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":13.4574,"_long":14.6807995,"_match":0}
+
+--Test 20 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":13.4574,"_long":14.6807995,"_match":0},{"_playerId":2,"_type":0,"_lat":3.6701999,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":1.2234,"_long":41.5956,"_match":0},{"_playerId":4,"_type":0,"_lat":17.1276,"_long":24.468,"_match":0}]}
+
+--Test 21 input--
+
+{"_playerId":0,"_email":"test1@somewhere.com","_type":0,"_lat":7.3403997,"_long":8.5638,"_match":0}
+
+--Test 21 output--
+
+{"playerData":[{"_playerId":2,"_type":0,"_lat":7.3403997,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":1.2234,"_long":41.5956,"_match":0},{"_playerId":4,"_type":0,"_lat":17.1276,"_long":24.468,"_match":0},{"_playerId":1,"_type":0,"_lat":13.4574,"_long":14.6807995,"_match":0}]}
+
+--Test 22 input--
+
+{"_playerId":0,"_email":"test2@somewhere.com","_type":0,"_lat":29.361599,"_long":9.7872,"_match":0}
+
+--Test 22 output--
+
+{"playerData":[{"_playerId":3,"_type":0,"_lat":29.361599,"_long":9.7872,"_match":0},{"_playerId":4,"_type":0,"_lat":17.1276,"_long":24.468,"_match":0},{"_playerId":1,"_type":0,"_lat":13.4574,"_long":14.6807995,"_match":0},{"_playerId":2,"_type":0,"_lat":7.3403997,"_long":8.5638,"_match":0}]}
+
+--Test 23 input--
+
+{"_playerId":0,"_email":"test3@somewhere.com","_type":0,"_lat":30.585,"_long":25.6914,"_match":0}
+
+--Test 23 output--
+
+{"playerData":[{"_playerId":4,"_type":0,"_lat":30.585,"_long":25.6914,"_match":0},{"_playerId":1,"_type":0,"_lat":13.4574,"_long":14.6807995,"_match":0},{"_playerId":2,"_type":0,"_lat":7.3403997,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":29.361599,"_long":9.7872,"_match":0}]}
+
+--Test 24 input--
+
+{"_playerId":0,"_email":"test0@somewhere.com","_type":0,"_lat":15.9042,"_long":13.4574,"_match":0}
+
+--Test 24 output--
+
+{"playerData":[{"_playerId":1,"_type":0,"_lat":15.9042,"_long":13.4574,"_match":0},{"_playerId":2,"_type":0,"_lat":7.3403997,"_long":8.5638,"_match":0},{"_playerId":3,"_type":0,"_lat":29.361599,"_long":9.7872,"_match":0},{"_playerId":4,"_type":0,"_lat":30.585,"_long":25.6914,"_match":0}]}

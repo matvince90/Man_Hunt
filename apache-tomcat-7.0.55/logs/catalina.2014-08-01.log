@@ -566,3 +566,63 @@ Aug 01, 2014 10:12:07 AM org.apache.coyote.AbstractProtocol destroy
 INFO: Destroying ProtocolHandler ["http-apr-8081"]
 Aug 01, 2014 10:12:07 AM org.apache.coyote.AbstractProtocol destroy
 INFO: Destroying ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 9:16:14 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: Loaded APR based Apache Tomcat Native library 1.1.31 using APR version 1.4.8.
+Aug 01, 2014 9:16:14 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+Aug 01, 2014 9:16:15 PM org.apache.catalina.core.AprLifecycleListener initializeSSL
+INFO: OpenSSL successfully initialized (OpenSSL 1.0.1h 5 Jun 2014)
+Aug 01, 2014 9:16:16 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 9:16:16 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 9:16:16 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 3417 ms
+Aug 01, 2014 9:16:16 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Aug 01, 2014 9:16:16 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.55
+Aug 01, 2014 9:16:17 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war
+Aug 01, 2014 9:16:24 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deployment of web application archive G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ManhuntServerSide.war has finished in 7,164 ms
+Aug 01, 2014 9:16:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs
+Aug 01, 2014 9:16:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\docs has finished in 103 ms
+Aug 01, 2014 9:16:24 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples
+Aug 01, 2014 9:16:25 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\examples has finished in 1,632 ms
+Aug 01, 2014 9:16:25 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\host-manager has finished in 92 ms
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\manager has finished in 115 ms
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deployment of web application directory G:\udocdownloads\docs\GitHub\SE\apache-tomcat-7.0.55\webapps\ROOT has finished in 87 ms
+Aug 01, 2014 9:16:26 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 9:16:26 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 9:16:26 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 9417 ms
+Aug 01, 2014 9:57:47 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 9:57:48 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 9:57:48 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Aug 01, 2014 9:57:48 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 9:57:48 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-apr-8009"]
+Aug 01, 2014 9:57:48 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-apr-8081"]
+Aug 01, 2014 9:57:48 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-apr-8009"]

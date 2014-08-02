@@ -100,3 +100,6 @@
 127.0.0.1 - - [01/Aug/2014:09:26:20 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 200 220
 127.0.0.1 - - [01/Aug/2014:09:26:21 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 200 220
 127.0.0.1 - - [01/Aug/2014:09:28:08 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 200 220
+127.0.0.1 - - [01/Aug/2014:21:16:46 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 500 13
+127.0.0.1 - - [01/Aug/2014:21:16:59 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 500 13
+127.0.0.1 - - [01/Aug/2014:21:17:23 -0400] "POST /ManhuntServerSide/rest/manhunt HTTP/1.1" 500 13
